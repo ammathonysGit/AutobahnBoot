@@ -1,6 +1,9 @@
 package com.scalefocus.tracker.tracker.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -16,8 +19,5 @@ public class User {
     private String username;
     @Column(nullable = false)
     private String password;
-
-
-
 
 }

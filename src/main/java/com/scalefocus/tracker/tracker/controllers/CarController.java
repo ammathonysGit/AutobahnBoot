@@ -24,7 +24,7 @@ public class CarController {
         if (cars == null) {
         throw new NoCarsFoundException("No cars found", new Throwable());
         }
-        
+
         return cars;
     }
 
