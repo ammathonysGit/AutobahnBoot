@@ -29,8 +29,8 @@ public class UsersService {
         return listOfUsers;
     }
 
-    public User findUserByUserName(String userName) {
-      return usersRepositoryCustom.findUserByUsername(userName);
+    public User findUserByUserName(String username) {
+      return usersRepositoryCustom.findByUsername(username);
     }
 
     public User findUserById(Integer id) {
