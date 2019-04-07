@@ -1,15 +1,21 @@
 package com.scalefocus.tracker.tracker.controllers;
 
+import com.scalefocus.tracker.tracker.constants.LoginConstant;
+import com.scalefocus.tracker.tracker.entity.User;
+import com.scalefocus.tracker.tracker.model.UsersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+
 @Controller
-@RequestMapping("/login")
+@RequestMapping(value = LoginConstant.LOGIN_URL)
 public class LoginController {
+
+    @Autowired
+    UsersService usersService;
 
     @RequestMapping("")
     public ModelAndView modelAndView() {

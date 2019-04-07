@@ -17,5 +17,13 @@
     <div><label> Password: <input type="password" name="password"/> </label></div>
     <div><input type="submit" value="Sign In"/></div>
 </form>
+<h2>If you don't have an account you can create it here: </h2>
+
+<form th:action="@{/createAccountForm}" method="get">
+    <div><input type="submit" value="Create Account"/></div>
+</form>
+
+
+</div>
 </body>
 </html>
