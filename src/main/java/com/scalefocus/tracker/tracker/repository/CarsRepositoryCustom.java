@@ -8,8 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +15,13 @@ import java.util.Optional;
 @Component
 public class CarsRepositoryCustom implements CarsRepository{
 
+
+    private final CarsRepository carsRepository;
+
     @Autowired
-    CarsRepository carsRepository;
+    public CarsRepositoryCustom(CarsRepository carsRepository) {
+        this.carsRepository = carsRepository;
+    }
 
     @Override
     public List<Car> findCarsByBrand(String brand) {

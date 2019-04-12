@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CarSearchForm</title>
+</head>
+<body>
+
+<div class="search">
+
+    <form action="#" th:action="@{/c}">
+
+    <div class="titleOfSearch">
+        <h1>Search:</h1>
+    </div>
+
+        <ul class="searchBox">
+
+            <li class="carBrand">
+
+               <div class="carBrandName">Brand:</div>
+                <select name="marka">
+                    <option th:field="*{brand}">Mercedes</option>
+
+                </select>
+            </li>
+
+
+        </ul>
+
+
+
+    </form>
+</div>
+
+
+</body>
+</html>

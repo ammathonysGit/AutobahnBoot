@@ -31,4 +31,6 @@ public class Car {
     @Column(nullable = false)
     private Double price;
 
+    public Car () { }
+
 }

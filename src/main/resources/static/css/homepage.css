@@ -1,0 +1,12 @@
+.titleAutobahn {
+    position: relative;
+    left: 50%;
+    border: 3px solid #73AD21;
+}
+
+.loginAction {
+    position: relative;
+    left: 30px;
+    border: black;
+}
+

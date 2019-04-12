@@ -1,14 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+   <link rel="stylesheet" type="text/css" href="/static/css/homepage.css">
     <title>Autobahn</title>
 </head>
 <body>
-<h1>Hello and Welcome to Autobahn</h1>
 
-<h1>Hello !</h1>
-<p>Welcome to <span th:text="${appName}">Our App</span></p>
-<p>Click <a th:href="@{/login}">here</a> to see a greeting.</p>
+<div class="titleAutobahn">
+    <h1><span th:text="${appName}"></span></h1>
+</div>
+
+
+
+<!--<p>Click <a th:href="@{/login}">here</a> to see a greeting.</p>-->
+<div class="loginAction">
+    <form  th:action="@{/createAccountForm/createAccount}" th:method="get">
+        <button type="submit">Register Here!</button>
+    </form>
+</div>
+
+<div class="carSearchForm">
+
+    <form action="#" th:action="@{/searchcarsform}" method="get">
+        <button type="submit">Search</button>
+
+    </form>
+
+
+</div>
+
+<!--<p>Click <a th:href="@{/createAccountForm}">here</a> to register</p>-->
+
 </body>
 </html>

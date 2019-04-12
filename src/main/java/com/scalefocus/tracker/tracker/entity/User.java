@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -23,4 +24,5 @@ public class User {
     @NotNull
     private String password;
 
+    public User(){}
 }
