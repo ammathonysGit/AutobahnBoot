@@ -14,21 +14,19 @@ import java.util.List;
 public class CarsServiceImpl implements CarService {
 
 
-    private final CarService carService;
-    private final CarsRepository carsRepositoryCustom;
+    private  CarsRepository carsRepository;
     private final CarMapper carMapper;
 
     @Autowired
-    public CarsServiceImpl(CarService carService, CarsRepository carsRepository) {
-        this.carService = carService;
-        this.carsRepositoryCustom = carsRepository;
+    public CarsServiceImpl(CarsRepository carsRepository) {
+        this.carsRepository = carsRepository;
         this.carMapper =  CarMapper.INSTANCE;
     }
 
 
     @Override
     public List<Car> getAllCars() {
-        List<Car> carList = carsRepositoryCustom.findAll();
+        List<Car> carList = carsRepository.findAll();
 
         if (carList == null) {
             throw new NoCarsFoundException("No Cars Found", new Throwable().getCause());
@@ -40,7 +38,7 @@ public class CarsServiceImpl implements CarService {
     @Override
     public Car saveCar(CarBindingModel carBindingModel) {
        Car car = carMapper.bindingModelToCar(carBindingModel);
-       carsRepositoryCustom.saveAndFlush(car);
+       carsRepository.saveAndFlush(car);
 
        return car;
     }
@@ -48,7 +46,7 @@ public class CarsServiceImpl implements CarService {
     @Override
     public Car updateCar(CarBindingModel carBindingModel) {
         Car car = carMapper.bindingModelToCar(carBindingModel);
-        carsRepositoryCustom.save(car);
+        carsRepository.save(car);
 
         return car;
     }
@@ -56,8 +54,136 @@ public class CarsServiceImpl implements CarService {
     @Override
     public void deleteCar(Car car) {
         if (car != null) {
-            carsRepositoryCustom.delete(car);
+            carsRepository.delete(car);
         }
+    }
+
+    @Override
+    public List<Car> findCarsByModel(String model) {
+        List<Car> carList = carsRepository.findAll();
+        if (carList == null) {
+            throw new NoCarsFoundException("No Cars Found", new Throwable().getCause());
+        }
+
+        for (Car car: carList) {
+            if (!car.getModel().equals(model)) {
+                carList.remove(car);
+            }
+        }
+
+        return carList;
+    }
+
+    @Override
+    public List<Car> findCarsByProductionDate(String Productiondate) {
+        List<Car> carList = carsRepository.findAll();
+        if (carList == null) {
+            throw new NoCarsFoundException("No Cars Found", new Throwable().getCause());
+        }
+
+        for (Car car: carList) {
+            if (!car.getProductiondate().equals(Productiondate)) {
+                carList.remove(car);
+            }
+        }
+
+        return carList;
+    }
+
+    @Override
+    public List<Car> findCarsByBodyType(String bodytype) {
+        List<Car> carList = carsRepository.findAll();
+        if (carList == null) {
+            throw new NoCarsFoundException("No Cars Found", new Throwable().getCause());
+        }
+
+        for (Car car: carList) {
+            if (!car.getBodytype().equals(bodytype)) {
+                carList.remove(car);
+            }
+        }
+
+        return carList;
+    }
+
+    @Override
+    public List<Car> findCarsByColor(String color) {
+        List<Car> carList = carsRepository.findAll();
+        if (carList == null) {
+            throw new NoCarsFoundException("No Cars Found", new Throwable().getCause());
+        }
+
+        for (Car car: carList) {
+            if (!car.getColor().equals(color)) {
+                carList.remove(car);
+            }
+        }
+
+        return carList;
+    }
+
+    @Override
+    public List<Car> findCarsByTransmissionType(String transmissiontype) {
+        List<Car> carList = carsRepository.findAll();
+        if (carList == null) {
+            throw new NoCarsFoundException("No Cars Found", new Throwable().getCause());
+        }
+
+        for (Car car: carList) {
+            if (!car.getTransmissiontype().equals(transmissiontype)) {
+                carList.remove(car);
+            }
+        }
+
+        return carList;
+    }
+
+    @Override
+    public List<Car> findCarsByBrand(String brand) {
+        List<Car> carList = carsRepository.findAll();
+        if (carList == null) {
+            throw new NoCarsFoundException("No Cars Found", new Throwable().getCause());
+        }
+
+        for(Car car: carList) {
+            if (!car.getBrand().equals(brand)){
+                carList.remove(car);
+            }
+        }
+
+        return carList;
+    }
+
+    @Override
+    public List<Car> findCarsByPrice(String price) {
+        List<Car> carList = carsRepository.findAll();
+        if (carList == null) {
+            throw new NoCarsFoundException("No Cars Found", new Throwable().getCause());
+        }
+
+        for (Car car: carList) {
+            if (!car.getPrice().equals(price)) {
+                carList.remove(car);
+            }
+        }
+
+        return carList;
+    }
+
+    @Override
+    public List<Car> findCarsByFuelType(String fueltype) {
+        List<Car> carList = carsRepository.findAll();
+        if (carList == null) {
+            throw new NoCarsFoundException("No Cars Found", new Throwable().getCause());
+        }
+
+        for (Car car: carList) {
+            if (!car.getFueltype().equals(fueltype)) {
+                carList.remove(car);
+            }
+        }
+
+        return carList;
     }
 
 }

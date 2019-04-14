@@ -1,8 +1,11 @@
 package com.scalefocus.tracker.tracker.model.bindingmodels;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class AccountBindingModel {
 
     private Integer id;

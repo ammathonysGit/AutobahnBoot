@@ -15,4 +15,20 @@ public interface CarService {
 
     void deleteCar(Car car);
 
+    List<Car> findCarsByModel(String model);
+
+    List<Car> findCarsByProductionDate(String Productiondate);
+
+    List<Car> findCarsByBodyType(String bodytype);
+
+    List<Car> findCarsByColor(String color);
+
+    List<Car> findCarsByTransmissionType(String transmissiontype);
+
+    List<Car> findCarsByBrand(String brand);
+
+    List<Car> findCarsByPrice(String price);
+
+    List<Car> findCarsByFuelType(String fueltype);
+
 }
