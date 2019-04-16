@@ -34,6 +34,8 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carCKlasse.setModel("C Class 220 CDI");
         carCKlasse.setProductiondate("12/12/2018");
         carCKlasse.setHorsepower(204);
+        carCKlasse.setLocation("BG, Sofia");
+        carCKlasse.setMileage(300);
 
         carService.saveCar(carCKlasse);
 
@@ -47,6 +49,8 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carEKlasse.setModel("E Class 63 AMG");
         carEKlasse.setProductiondate("01/01/2019");
         carEKlasse.setHorsepower(610);
+        carEKlasse.setLocation("BG, Sofia");
+        carEKlasse.setMileage(50);
 
         carService.saveCar(carEKlasse);
 
@@ -60,6 +64,8 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carGKlasse.setModel("G Class 65 AMG");
         carGKlasse.setProductiondate("21/02/2019");
         carGKlasse.setHorsepower(800);
+        carGKlasse.setMileage(100);
+        carGKlasse.setLocation("LA, B.H");
 
         carService.saveCar(carGKlasse);
 
@@ -73,8 +79,70 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carSKlasse.setModel("S Class 550");
         carSKlasse.setProductiondate("17/01/2019");
         carSKlasse.setHorsepower(510);
+        carSKlasse.setLocation("CA, C.C");
+        carSKlasse.setMileage(20);
 
         carService.saveCar(carSKlasse);
+
+        CarBindingModel carCLAKlasse = new CarBindingModel();
+        carCLAKlasse.setBodytype("Sedan");
+        carCLAKlasse.setBrand("Mercedes");
+        carCLAKlasse.setColor("Black Arrow");
+        carCLAKlasse.setFueltype("Petrol");
+        carCLAKlasse.setPrice(90000.00);
+        carCLAKlasse.setTransmissiontype("Automatic");
+        carCLAKlasse.setModel("CLA Class 350");
+        carCLAKlasse.setProductiondate("17/01/2019");
+        carCLAKlasse.setHorsepower(320);
+        carCLAKlasse.setLocation("CA, C.C");
+        carCLAKlasse.setMileage(20);
+
+        carService.saveCar(carCLAKlasse);
+
+        CarBindingModel carGLKKlasse = new CarBindingModel();
+        carGLKKlasse.setBodytype("SUV");
+        carGLKKlasse.setBrand("Mercedes");
+        carGLKKlasse.setColor("Black");
+        carGLKKlasse.setFueltype("Diesel");
+        carGLKKlasse.setPrice(95000.00);
+        carGLKKlasse.setTransmissiontype("Automatic");
+        carGLKKlasse.setModel("GLK Class 420 CDI");
+        carGLKKlasse.setProductiondate("17/01/2019");
+        carGLKKlasse.setHorsepower(350);
+        carGLKKlasse.setLocation("CA, C.C");
+        carGLKKlasse.setMileage(157);
+
+        carService.saveCar(carGLKKlasse);
+
+        CarBindingModel carBKlasse = new CarBindingModel();
+        carBKlasse.setBodytype("SUV");
+        carBKlasse.setBrand("Mercedes");
+        carBKlasse.setColor("Silver");
+        carBKlasse.setFueltype("Diesel");
+        carBKlasse.setPrice(95000.00);
+        carBKlasse.setTransmissiontype("Manual");
+        carBKlasse.setModel("B Class 350 CDI");
+        carBKlasse.setProductiondate("20/03/2019");
+        carBKlasse.setHorsepower(300);
+        carBKlasse.setLocation("CA, C.C");
+        carBKlasse.setMileage(200);
+
+        carService.saveCar(carBKlasse);
+
+        CarBindingModel carXKlasse = new CarBindingModel();
+        carXKlasse.setBodytype("SUV");
+        carXKlasse.setBrand("Mercedes");
+        carXKlasse.setColor("White");
+        carXKlasse.setFueltype("Diesel");
+        carXKlasse.setPrice(13000.00);
+        carXKlasse.setTransmissiontype("Automatic");
+        carXKlasse.setModel("X Class 420 CDI");
+        carXKlasse.setProductiondate("20/03/2019");
+        carXKlasse.setHorsepower(350);
+        carXKlasse.setLocation("CA, C.C");
+        carXKlasse.setMileage(200);
+
+        carService.saveCar(carXKlasse);
     }
 
 }

@@ -29,7 +29,7 @@
 }
 
 #titlesecond {
-   color: #cccccc;
+    color: #cccccc;
     font-size: 30px;
     position: relative;
     bottom: 10px;
@@ -45,8 +45,9 @@
 }
 
 #tableFirstOne {
-    position: relative;
-    left: 7%;
+    position: inherit;
+
+
 }
 
 #tableFirstTwo {
@@ -63,4 +64,29 @@
 
 .whitespace {
     height: 20px;
+}
+
+
+.cars {
+    width: 55%;
+    position: relative;
+    left: 25%;
+    border: 1px;
+    border-style:solid;
+    border-color:#cccccc;
+    padding: 1em;
+}
+
+.item {
+    border: 1px;
+    border-style:solid;
+    border-color:#cccccc;
+    padding: 1em;
+}
+
+.tableSingleCarPage {
+    background-color: #cccccc;
+    width: 100%;
+    position: relative;
+    height: 898px !important;;
 }

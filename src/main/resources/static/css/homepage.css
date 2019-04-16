@@ -1,22 +1,66 @@
 #title {
-    top: 5px;
+    font-size: 50px;
+    position: relative;
+    top: -15%;
 }
+
+.btn.btn-secondary{
+    height: 35px;
+    width: 90px;
+    font-size: 15px;
+    color: #cccccc;
+}
+
 
 #page {
     background-color: #262626;
 }
 
-#signuploginactions {
-    position: relative;
-    left: 250%;
-    top: 10px;
+.navbar-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
 }
 
+.navbar-nav .nav-item {
+    font-size: 25px;
+    color: #cccccc;
+}
 
-#titlesecond{
-   color: #fff;
+#titlesecond {
+   color: #cccccc;
+    font-size: 30px;
+    position: relative;
+    bottom: 10px;
 }
 
 #carouselExampleControls {
     bottom: 20px;
+}
+
+#thymeleafTitle {
+    color: #cccccc;
+    font-size: 10px;
+}
+
+#tableFirstOne {
+    position: relative;
+    left: 7%;
+}
+
+#tableFirstTwo {
+    position: relative;
+    left: 7%;
+}
+
+#titlesecondClassics {
+    color: #cccccc;
+    font-size: 30px;
+    position: relative;
+    bottom: 10px;
+}
+
+.whitespace {
+    height: 20px;
 }

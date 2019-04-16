@@ -52,6 +52,11 @@ public class CarsServiceImpl implements CarService {
     }
 
     @Override
+    public Car getCarById(Integer id) {
+        return carsRepository.findById(id).get();
+    }
+
+    @Override
     public void deleteCar(Car car) {
         if (car != null) {
             carsRepository.delete(car);

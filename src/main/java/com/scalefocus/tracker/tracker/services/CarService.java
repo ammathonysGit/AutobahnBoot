@@ -13,6 +13,8 @@ public interface CarService {
 
     Car updateCar(CarBindingModel carBindingModel);
 
+    Car getCarById(Integer id);
+
     void deleteCar(Car car);
 
     List<Car> findCarsByModel(String model);

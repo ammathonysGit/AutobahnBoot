@@ -17,6 +17,24 @@ public class CarBindingModel  {
     private String fueltype;
     private Double price;
     private Integer horsepower;
+    private Integer mileage;
+    private String location;
+
+    public Integer getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(Integer mileage) {
+        this.mileage = mileage;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
     public Integer getId() {
         return id;

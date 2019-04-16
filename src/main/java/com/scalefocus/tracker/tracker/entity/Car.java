@@ -17,6 +17,8 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     private Integer id;
+    @Version
+    private Integer version;
     @Column(nullable = false)
     private String brand;
     @Column(nullable = false)
@@ -34,9 +36,35 @@ public class Car {
     @Column(nullable = false)
     private Double price;
     private Integer horsepower;
+    private Integer mileage;
+    private String location;
+
 
     public Car () { }
 
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    public Integer getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(Integer mileage) {
+        this.mileage = mileage;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
     public Integer getId() {
         return id;

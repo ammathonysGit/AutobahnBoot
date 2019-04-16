@@ -24,7 +24,8 @@ public class HomeController {
     public ModelAndView welcomePage(ModelAndView model) {
         model.setViewName("index");
         model.addObject("appName", applicationName);
-        model.addObject("cars", carService.getAllCars());
+        model.addObject("carsTierOne", carService.getAllCars().subList(0,4));
+        model.addObject("carsTierTwo", carService.getAllCars().subList(4,8));
 
         return model;
     }

@@ -1,37 +1,775 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{./css/searchformpage.css}" type="text/css">
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <link href="../static/css/spring-core.css"
+          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
     <title>CarSearchForm</title>
 </head>
-<body>
 
-<div class="search">
+<body id="page">
 
-    <form action="#" th:action="@{/c}">
-
-    <div class="titleOfSearch">
-        <h1>Search:</h1>
-    </div>
-
-        <ul class="searchBox">
-
-            <li class="carBrand">
-
-               <div class="carBrandName">Brand:</div>
-                <select name="marka">
-                    <option th:field="*{brand}">Mercedes</option>
-
-                </select>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" th:href="${'/'}"><h1 id="title"><span>Autobahn</span></h1></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav" style="position: relative;">
+            <li class="nav-item" >
+                <a class="nav-link" th:href="${'/'}" >Home <span class="sr-only">(current)</span></a>
             </li>
-
-
+            <li class="nav-item" >
+                <a class="nav-link" href="http://benz.bg/">Tuning</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" th:href="${'/contactus'}">Contact Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="${'/rim/'}">Rims</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="${'/parts'}">Parts</a>
+            </li>
+            <li class="nav-item dropdown" >
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cars
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="font-size: 15px; background-color: #ccc">
+                    <a class="dropdown-item"  th:href="${'/cars'}">Check out our vehicles</a>
+                    <a class="dropdown-item" th:href="${'/searchcarsform'}">Search for a vehicle</a>
+                    <a class="dropdown-item" th:href="${'/about'}">About the cars we sell</a>
+                </div>
+            </li>
+            <li id="signuploginactions" class="navbar-item">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a th:href="${'/registrationform'}">
+                        <button type="button" class="btn btn-secondary" >Sign Up</button>
+                    </a>
+                    <a th:href="${'/login'}">
+                        <button type="button" class="btn btn-secondary" >Log In</button>
+                    </a>
+                </div>
+            </li>
         </ul>
+    </div>
+</nav>
 
 
 
-    </form>
-</div>
+<form th:action="@{'/carsearchform/results'}" method="post" id="carsForm" name="carsForm" class="search-form" style="background-color: #cccc; height: 898px;">
+    <input type="hidden" name="go" value="cars">
+    <input type="hidden" name="search" value="1">
+    <input type="hidden" name="advanced" id="advanced" value="1">
+    <input type="hidden" name="fromhomeu" value="1">
+    <input type="hidden" name="publishedTime" id="publishedTime" value="0">
+    <input type="hidden" name="filterOrderBy" id="filterOrderBy" value="1">
+    <input type="hidden" name="showPrice" id="showPrice" value="0">
+    <input type="hidden" name="autotype" value="1">
+    <input type="hidden" name="stateId" value="1">
+
+    <table  border="0" cellpadding="0" cellspacing="0" class="searchformtable">
+        <tbody><tr>
+            <td valign="top" style="padding-top:20px;">
+                <div class="box-rounded">
+
+
+
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tbody><tr>
+                            <td style="padding:0px;">
+                                <table border="0" cellpadding="0" cellspacing="0" class="ver13black" id="searchForm" width="100%">
+                                    <tbody><tr>
+                                        <td valign="top" style="padding:5px">
+                                            <table border="0" cellspacing="0" cellpadding="3">
+                                                <tbody><tr>
+                                                    <td colspan="2" class="titleSearchForm"><strong>Search form</strong></td>
+
+                                                </tr>
+<!--                                                <tr>-->
+<!--                                                    <td colspan="2">-->
+<!--                                                        <select name="section" id="section" onchange="location = '?go='+this.options[this.selectedIndex].value+'&amp;search=0&amp;advanced=1&amp;fromhomeu=1&amp;CityId=0&amp;currencyId=1&amp;autotype=1&amp;stateId=1&amp;offersFor4=1&amp;offersFor1=1&amp;filterOrderBy=1'" ;="">-->
+<!--                                                            <option value="cars" selected="">Vehicles</option>-->
+<!--                                                            <option value="busove">Бусове</option>-->
+<!--                                                            <option value="moto">Мотори</option>-->
+<!--                                                            <option value="caravan">Каравани и кемпери</option>-->
+<!--                                                            <option value="truck">Камиони</option>-->
+<!--                                                            <option value="boat">Яхти и лодки</option>-->
+<!--                                                            <option value="bager">Строителна техника</option>-->
+<!--                                                            <option value="agro">Селскостопански</option>-->
+<!--                                                            <option value="trailer">Ремаркета</option>-->
+<!--                                                            <option value="part">Части и аксесоари</option>-->
+<!--                                                            <option value="tire">Гуми и джанти</option>-->
+
+<!--                                                        </select>-->
+<!--                                                    </td>-->
+
+<!--                                                </tr>-->
+                                                <tr>
+                                                    <td colspan="2"><img src="images/px.gif" width="1" height="5"></td>
+                                                </tr>
+<!--                                                <tr>-->
+<!--                                                    <td colspan="2">-->
+<!--                                                        <div style="float:left;margin-right:5px;"><strong>Обяви от:</strong></div>-->
+<!--                                                        <div style="float:left;">-->
+<!--                                                            <input type="checkbox" name="offerFrom4" id="offerFrom4" value="1">Частни лица<br>-->
+<!--                                                            <input type="checkbox" name="offerFrom1" id="offerFrom1" value="1">Автокъщи/Търговци<br>-->
+<!--                                                            <input type="checkbox" name="offerFrom2" id="offerFrom2" value="1">Официални вносители<br>-->
+<!--                                                            &lt;!&ndash; <input type=checkbox name="offerFrom3" id="offerFrom3" value=1 >Лизингови компании&ndash;&gt;-->
+<!--                                                        </div>-->
+<!--                                                    </td>-->
+<!--                                                </tr>-->
+                                                <tr>
+                                                    <td class="line-bottom-border" colspan="2"><img src="images/px.gif" width="1" height="1"></td>
+                                                </tr>
+                                                <tr id="coupecontainer" class="vehicleandnumberofdoorscolumn">
+                                                    <td>
+										<span id="coupespan" >
+										<b>Vehicle type</b><br><img src="images/px.gif" width="1" height="3"><br>
+										<select style="width:150px;" name="categoryId" id="categoryId">
+										<option value="0">- All -</option>
+																																<option value="1">Saloon</option>
+																																											<option value="2">Small car</option>
+																																											<option value="4">Estate Car</option>
+																																											<option value="5">Coupe</option>
+																																											<option value="6">Cabriolet</option>
+																																											<option value="7">SUV</option>
+																																											<option value="8">Pickup truck</option>
+																																											<option value="9">Van</option>
+																																																				</select>
+										</span>
+                                                    </td>
+                                                    <td style="position:relative; left: 150%;"><b>Number of doors</b><br><img src="images/px.gif" width="1" height="3"><br>
+                                                        <select style="width:150px;" name="doorId" id="doorId">
+                                                            <option value="0">- All -</option>
+                                                            <option value="1">2/3</option>
+                                                            <option value="2">4/5</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+
+
+
+                                                <tr>
+                                                    <td class="line-bottom-border" colspan="2"><img src="images/px.gif" width="1" height="1"></td>
+                                                </tr>
+                                                <tr id="brandTR" class="makeandmodelcolumn" >
+                                                    <td><b>Make</b><br><img src="images/px.gif" width="1" height="3"><br>
+                                                        <select style="width:150px;" name="brandId" id="BrandId" onchange="$('#model_panel').load('?ajax=multimodel&amp;brandId='+this.options[this.selectedIndex].value);$('#modelId option:selected').text('- Всички -');$('#model_label').text('Модел');">
+                                                            <option value="0">- Mercedes -</option>
+<!--                                                            <optgroup label="A">										<option value="1">Acura</option>-->
+<!--                                                                <option value="2">Aixam</option>-->
+<!--                                                                <option value="4">Alfa Romeo</option>-->
+<!--                                                                <option value="5">Alpina</option>-->
+<!--                                                                <option value="3">Aro</option>-->
+<!--                                                                <option value="6">Asia Motors</option>-->
+<!--                                                                <option value="7">Aston Martin</option>-->
+<!--                                                                <option value="8">Audi</option>-->
+<!--                                                            </optgroup><optgroup label="B">										<option value="136">Barkas</option>-->
+<!--                                                            <option value="9">Bentley</option>-->
+<!--                                                            <option value="10">BMW</option>-->
+<!--                                                            <option value="11">Brilliance</option>-->
+<!--                                                            <option value="13">Buick</option>-->
+<!--                                                        </optgroup><optgroup label="C">										<option value="14">Cadillac</option>-->
+<!--                                                            <option value="15">Chevrolet</option>-->
+<!--                                                            <option value="16">Chrysler</option>-->
+<!--                                                            <option value="17">Citroen</option>-->
+<!--                                                        </optgroup><optgroup label="D">										<option value="19">Dacia</option>-->
+<!--                                                            <option value="20">Daewoo</option>-->
+<!--                                                            <option value="21">Daihatsu</option>-->
+<!--                                                            <option value="22">Datsun</option>-->
+<!--                                                            <option value="23">Dodge</option>-->
+<!--                                                            <option value="123">DR</option>-->
+<!--                                                        </optgroup><optgroup label="F">										<option value="24">Ferrari</option>-->
+<!--                                                            <option value="25">Fiat</option>-->
+<!--                                                            <option value="26">Ford</option>-->
+<!--                                                        </optgroup><optgroup label="G">										<option value="127">Gac Gonow</option>-->
+<!--                                                            <option value="27">GAZ</option>-->
+<!--                                                            <option value="29">GMC</option>-->
+<!--                                                            <option value="30">Great wall</option>-->
+<!--                                                        </optgroup><optgroup label="H">										<option value="137">Haval</option>-->
+<!--                                                            <option value="31">Honda</option>-->
+<!--                                                            <option value="32">Hummer</option>-->
+<!--                                                            <option value="33">Hyundai</option>-->
+<!--                                                        </optgroup><optgroup label="I">										<option value="34">Infiniti</option>-->
+<!--                                                            <option value="35">Isuzu</option>-->
+<!--                                                            <option value="97">Iveco</option>-->
+<!--                                                        </optgroup><optgroup label="J">										<option value="36">Jaguar</option>-->
+<!--                                                            <option value="37">Jeep</option>-->
+<!--                                                        </optgroup><optgroup label="K">										<option value="38">Kia</option>-->
+<!--                                                        </optgroup><optgroup label="L">										<option value="40">Lada</option>-->
+<!--                                                            <option value="41">Lamborghini</option>-->
+<!--                                                            <option value="42">Lancia</option>-->
+<!--                                                            <option value="43">Land Rover</option>-->
+<!--                                                            <option value="45">Lexus</option>-->
+<!--                                                            <option value="47">Lincoln</option>-->
+<!--                                                            <option value="48">Lotus</option>-->
+                                                        </optgroup><optgroup label="M">
+<!--                                                            <option value="49">Mahindra</option>-->
+<!--                                                            <option value="50">Maserati</option>-->
+<!--                                                            <option value="52">Maybach</option>-->
+<!--                                                            <option value="53">Mazda</option>-->
+<!--                                                            <option value="126">McLaren</option>-->
+                                                            <option value="54">Mercedes-Benz</option>
+<!--                                                            <option value="55">MG</option>-->
+<!--                                                            <option value="56">Mini</option>-->
+<!--                                                            <option value="57">Mitsubishi</option>-->
+<!--                                                            <option value="59">Moskvich</option>-->
+                                                        </optgroup>
+<!--                                                            <optgroup label="N">										<option value="60">Nissan</option>-->
+<!--                                                        </optgroup><optgroup label="O">										<option value="61">Oldsmobile</option>-->
+<!--                                                            <option value="63">Opel</option>-->
+<!--                                                        </optgroup><optgroup label="P">										<option value="64">Peugeot</option>-->
+<!--                                                            <option value="65">Piaggio</option>-->
+<!--                                                            <option value="66">Plymouth</option>-->
+<!--                                                            <option value="67">Pontiac</option>-->
+<!--                                                            <option value="68">Porsche</option>-->
+<!--                                                        </optgroup><optgroup label="R">										<option value="106">Range Rover</option>-->
+<!--                                                            <option value="69">Renault</option>-->
+<!--                                                            <option value="70">Rolls Royce</option>-->
+<!--                                                            <option value="71">Rover</option>-->
+<!--                                                        </optgroup><optgroup label="S">										<option value="92">Saab</option>-->
+<!--                                                            <option value="101">Samand</option>-->
+<!--                                                            <option value="95">Scion</option>-->
+<!--                                                            <option value="72">Seat</option>-->
+<!--                                                            <option value="100">Setra</option>-->
+<!--                                                            <option value="99">Shuanghuan</option>-->
+<!--                                                            <option value="73">Skoda</option>-->
+<!--                                                            <option value="74">Smart</option>-->
+<!--                                                            <option value="75">Ssangyong</option>-->
+<!--                                                            <option value="76">Subaru</option>-->
+<!--                                                            <option value="77">Suzuki</option>-->
+<!--                                                        </optgroup><optgroup label="T">										<option value="78">Talbot</option>-->
+<!--                                                            <option value="79">Tata</option>-->
+<!--                                                            <option value="129">Tesla</option>-->
+<!--                                                            <option value="80">Toyota</option>-->
+<!--                                                            <option value="81">Trabant</option>-->
+<!--                                                            <option value="82">Triumph</option>-->
+<!--                                                        </optgroup><optgroup label="U">										<option value="89">UAZ</option>-->
+<!--                                                        </optgroup><optgroup label="V">										<option value="84">Volga</option>-->
+<!--                                                            <option value="85">Volvo</option>-->
+<!--                                                            <option value="86">VW</option>-->
+<!--                                                        </optgroup><optgroup label="W">										<option value="87">Wartburg</option>-->
+<!--                                                        </optgroup><optgroup label="Y">										<option value="134">Yogomo</option>-->
+<!--                                                        </optgroup><optgroup label="Z">										<option value="90">Zastava</option>-->
+<!--                                                            <option value="91">Zaz</option>-->
+<!--                                                        </optgroup><optgroup label="В">										<option value="107">ВАЗ</option>-->
+<!--                                                            <option value="102">Варшава</option>-->
+<!--                                                        </optgroup>-->
+
+                                                        </select>
+                                                    </td>
+                                                    <td valign="top">
+                                                        <table cellpadding="0" cellspacing="0" style="    position: relative; left: 300%;">
+                                                            <tbody><tr>
+                                                                <td><div id="model_label" style="font-weight: bold;">Model</div></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding-top: 4px;height:19px;">
+                                                                    <select name="modelId" id="modelId" style="width:150px;z-index: 1;" onfocus="ShowModelPanel();">
+                                                                        <option value="0" selected="">- Всички -</option>
+                                                                    </select>
+
+                                                                    <div class="model_panel" id="model_panel" style="margin-top: -2px; display: none;">			<div></div>
+                                                                        <ul style="padding-left: 10px;max-height: 350px;overflow-y: scroll;height: auto;" id="models_list">
+                                                                            <li style="list-style: none;"><input type="checkbox" name="models[]" class="model" value="" data-label="- Всички -">- All -</li>
+                                                                        </ul>
+                                                                        <p style="text-align: center;">
+                                                                            <a href="javascript:;" onclick="CloseModelPanel();" class="mainlink">Close</a>
+                                                                        </p>
+                                                                        <script>
+                                                                            $( document ).ready(function() {
+                                                                                $('.modelgroup').change(function(){
+                                                                                    var checks = $(this).attr('data-group').split(",");
+
+                                                                                    if ($(this).is(':checked')) {
+                                                                                        for(z=0; z<checks.length; z++) {
+                                                                                            $('input:checkbox[value="' + checks[z] + '"]').prop('checked', true);
+                                                                                        }
+
+                                                                                    } else {
+                                                                                        for(z=0; z<checks.length; z++) {
+                                                                                            $('input:checkbox[value="' + checks[z] + '"]').prop('checked', false);
+                                                                                        }
+                                                                                    }
+                                                                                    CountModelsSelected();
+                                                                                });
+
+
+
+
+                                                                                $('.model').change(function(){
+
+                                                                                    if (!$(this).is(':checked')) {
+                                                                                        var unchecked_field = $(this).val();
+                                                                                        //console.log("unchecked_field "+unchecked_field);
+                                                                                        $('input.modelgroup:checkbox:checked').each(function () {
+                                                                                            var children =  $(this).attr('data-group').split(",");
+                                                                                            for(var i in children) {
+                                                                                                if(children[i] == unchecked_field) {
+                                                                                                    $('input:checkbox[value="' + $(this).val() + '"]').prop('checked', false);
+                                                                                                }
+                                                                                            }
+                                                                                        });
+
+                                                                                    }
+
+                                                                                    CountModelsSelected();
+
+                                                                                });
+
+
+                                                                                $('input.modelgroup:checkbox:checked').each(function () {
+                                                                                    var checks = $(this).attr('data-group').split(",");
+                                                                                    for(var i in checks) {
+
+
+                                                                                        $('input:checkbox[value="' + checks[i] + '"]').prop('checked', true);
+                                                                                    }
+
+                                                                                });
+
+                                                                            });
+
+
+
+
+
+                                                                        </script></div>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody></table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="line-bottom-border" colspan="2"><img src="images/px.gif" width="1" height="1"></td>
+                                                </tr>
+
+                                                <tr class="fuelandtransmissiontype">
+                                                    <td><b>Fuel type</b><br><img src="images/px.gif" width="1" height="3"><br>
+                                                        <select style="width:150px;" name="fuelId" id="fuelId">
+                                                            <option value="0">- All -</option>
+                                                            <option value="1">Petrol</option>
+                                                            <option value="2">Diesel</option>
+                                                            <option value="3">LPG/Petrol</option>
+                                                            <option value="4">Hybrid</option>
+                                                            <option value="5">Electric</option>
+                                                        </select>
+                                                    </td>
+                                                    <td style="    position: relative; left: 150%;"><b>Transmission type</b><br><img src="images/px.gif" width="1" height="3"><br>
+                                                        <select style="width:150px;" name="gearId" id="gearId">
+                                                            <option value="0">- All -</option>
+                                                            <option value="1">Manual</option>
+                                                            <option value="2">Automatic</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="line-bottom-border" colspan="2"><img src="images/px.gif" width="1" height="1"></td>
+                                                </tr>
+                                                <tr class="productionyearcolumn">
+                                                    <td colspan="2"    style=" position: relative;
+                                                        left: 200%;">
+                                                        <strong>Year of production</strong><br><img src="images/px.gif" width="1" height="3"><br>
+                                                        from <select name="yearFrom" id="yearFrom" class="textfield">
+                                                        <option value=""></option>
+                                                        <option value="2019">2019  г.</option>
+                                                        <option value="2018">2018  г.</option>
+                                                        <option value="2017">2017  г.</option>
+                                                        <option value="2016">2016  г.</option>
+                                                        <option value="2015">2015  г.</option>
+                                                        <option value="2014">2014  г.</option>
+                                                        <option value="2013">2013  г.</option>
+                                                        <option value="2012">2012  г.</option>
+                                                        <option value="2011">2011  г.</option>
+                                                        <option value="2010">2010  г.</option>
+                                                        <option value="2009">2009  г.</option>
+                                                        <option value="2008">2008  г.</option>
+                                                        <option value="2007">2007  г.</option>
+                                                        <option value="2006">2006  г.</option>
+                                                        <option value="2005">2005  г.</option>
+                                                        <option value="2004">2004  г.</option>
+                                                        <option value="2003">2003  г.</option>
+                                                        <option value="2002">2002  г.</option>
+                                                        <option value="2001">2001  г.</option>
+                                                        <option value="2000">2000  г.</option>
+                                                        <option value="1999">1999  г.</option>
+                                                        <option value="1998">1998  г.</option>
+                                                        <option value="1997">1997  г.</option>
+                                                        <option value="1996">1996  г.</option>
+                                                        <option value="1995">1995  г.</option>
+                                                        <option value="1994">1994  г.</option>
+                                                        <option value="1993">1993  г.</option>
+                                                        <option value="1992">1992  г.</option>
+                                                        <option value="1991">1991  г.</option>
+                                                        <option value="1990">1990  г.</option>
+                                                        <option value="1989">1989  г.</option>
+                                                        <option value="1988">1988  г.</option>
+                                                        <option value="1987">1987  г.</option>
+                                                        <option value="1986">1986  г.</option>
+                                                        <option value="1985">1985  г.</option>
+                                                        <option value="1984">1984  г.</option>
+                                                        <option value="1983">1983  г.</option>
+                                                        <option value="1982">1982  г.</option>
+                                                        <option value="1981">1981  г.</option>
+                                                        <option value="1980">1980  г.</option>
+                                                        <option value="1979">1979  г.</option>
+                                                        <option value="1978">1978  г.</option>
+                                                        <option value="1977">1977  г.</option>
+                                                        <option value="1976">1976  г.</option>
+                                                        <option value="1975">1975  г.</option>
+                                                        <option value="1974">1974  г.</option>
+                                                        <option value="1973">1973  г.</option>
+                                                        <option value="1972">1972  г.</option>
+                                                        <option value="1971">1971  г.</option>
+                                                    </select>
+                                                        &nbsp;
+                                                        to <select name="yearTo" id="yearTo" class="textfield">
+                                                        <option value=""></option>
+                                                        <option value="2019">2019 г.</option>
+                                                        <option value="2018">2018 г.</option>
+                                                        <option value="2017">2017 г.</option>
+                                                        <option value="2016">2016 г.</option>
+                                                        <option value="2015">2015 г.</option>
+                                                        <option value="2014">2014 г.</option>
+                                                        <option value="2013">2013 г.</option>
+                                                        <option value="2012">2012 г.</option>
+                                                        <option value="2011">2011 г.</option>
+                                                        <option value="2010">2010 г.</option>
+                                                        <option value="2009">2009 г.</option>
+                                                        <option value="2008">2008 г.</option>
+                                                        <option value="2007">2007 г.</option>
+                                                        <option value="2006">2006 г.</option>
+                                                        <option value="2005">2005 г.</option>
+                                                        <option value="2004">2004 г.</option>
+                                                        <option value="2003">2003 г.</option>
+                                                        <option value="2002">2002 г.</option>
+                                                        <option value="2001">2001 г.</option>
+                                                        <option value="2000">2000 г.</option>
+                                                        <option value="1999">1999 г.</option>
+                                                        <option value="1998">1998 г.</option>
+                                                        <option value="1997">1997 г.</option>
+                                                        <option value="1996">1996 г.</option>
+                                                        <option value="1995">1995 г.</option>
+                                                        <option value="1994">1994 г.</option>
+                                                        <option value="1993">1993 г.</option>
+                                                        <option value="1992">1992 г.</option>
+                                                        <option value="1991">1991 г.</option>
+                                                        <option value="1990">1990 г.</option>
+                                                        <option value="1989">1989 г.</option>
+                                                        <option value="1988">1988 г.</option>
+                                                        <option value="1987">1987 г.</option>
+                                                        <option value="1986">1986 г.</option>
+                                                        <option value="1985">1985 г.</option>
+                                                        <option value="1984">1984 г.</option>
+                                                        <option value="1983">1983 г.</option>
+                                                        <option value="1982">1982 г.</option>
+                                                        <option value="1981">1981 г.</option>
+                                                        <option value="1980">1980 г.</option>
+                                                        <option value="1979">1979 г.</option>
+                                                        <option value="1978">1978 г.</option>
+                                                        <option value="1977">1977 г.</option>
+                                                        <option value="1976">1976 г.</option>
+                                                        <option value="1975">1975 г.</option>
+                                                        <option value="1974">1974 г.</option>
+                                                        <option value="1973">1973 г.</option>
+                                                        <option value="1972">1972 г.</option>
+                                                        <option value="1971">1971 г.</option>
+                                                    </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="line-bottom-border" colspan="2"><img src="images/px.gif" width="1" height="1"></td>
+                                                </tr>
+                                                <tr class="pricecolumn">
+                                                    <td colspan="2" style="position: relative; bottom: 95px;">
+                                                        <b>Price</b>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="manual_price" value="1" onclick="if(this.checked){$('#rangepricetable').hide();$('#manualpricetable').show();} else { $('#rangepricetable').show();$('#manualpricetable').hide(); }">детайлна цена<br><img src="images/px.gif" width="1" height="3"><br>
+                                                        <table cellpadding="0" cellspacing="0" id="rangepricetable">
+                                                            <tbody><tr>
+                                                                <td>
+                                                                    <select name="priceFrom" id="PriceFrom" onchange="$('#priceToContainer').load('?ajax=generatePrice&amp;start='+ this.options[this.selectedIndex].value);" class="textfield">
+                                                                        <option value=""></option>
+                                                                        <option value="1000">from 1000</option>
+                                                                        <option value="2000">from 2000</option>
+                                                                        <option value="3000">from 3000</option>
+                                                                        <option value="4000">from 4000</option>
+                                                                        <option value="5000">from 5000</option>
+                                                                        <option value="6000">from 6000</option>
+                                                                        <option value="7000">from 7000</option>
+                                                                        <option value="8000">from 8000</option>
+                                                                        <option value="9000">from 9000</option>
+                                                                        <option value="10000">from 10000</option>
+                                                                        <option value="11000">from 11000</option>
+                                                                        <option value="12000">from 12000</option>
+                                                                        <option value="13000">from 13000</option>
+                                                                        <option value="14000">from 14000</option>
+                                                                        <option value="15000">from 15000</option>
+                                                                        <option value="16000">from 16000</option>
+                                                                        <option value="17000">from 17000</option>
+                                                                        <option value="18000">from 18000</option>
+                                                                        <option value="19000">from 19000</option>
+                                                                        <option value="20000">from 20000</option>
+                                                                        <option value="21000">from 21000</option>
+                                                                        <option value="22000">from 22000</option>
+                                                                        <option value="23000">from 23000</option>
+                                                                        <option value="24000">from 24000</option>
+                                                                        <option value="25000">from 25000</option>
+                                                                        <option value="30000">from 30000</option>
+                                                                        <option value="35000">from 35000</option>
+                                                                        <option value="40000">from 40000</option>
+                                                                        <option value="45000">from 45000</option>
+                                                                        <option value="50000">from 50000</option>
+                                                                        <option value="55000">from 55000</option>
+                                                                        <option value="60000">from 60000</option>
+                                                                        <option value="65000">from 65000</option>
+                                                                        <option value="70000">from 70000</option>
+                                                                        <option value="75000">from 75000</option>
+                                                                        <option value="80000">from 80000</option>
+                                                                        <option value="85000">from 85000</option>
+                                                                        <option value="90000">from 90000</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td style="padding-left:3px;padding-right:3px;">
+
+                                                                    -
+
+                                                                </td>
+                                                                <td>
+                                                                    <div id="priceToContainer">
+                                                                        <select name="priceTo" id="PriceTo" class="textfield">
+                                                                            <option value=""></option>
+                                                                            <option value="1000">to 1000</option>
+                                                                            <option value="2000">to 2000</option>
+                                                                            <option value="3000">to 3000</option>
+                                                                            <option value="4000">to 4000</option>
+                                                                            <option value="5000">to 5000</option>
+                                                                            <option value="6000">to 6000</option>
+                                                                            <option value="7000">to 7000</option>
+                                                                            <option value="8000">to 8000</option>
+                                                                            <option value="9000">to 9000</option>
+                                                                            <option value="10000">to 10000</option>
+                                                                            <option value="11000">to 11000</option>
+                                                                            <option value="12000">to 12000</option>
+                                                                            <option value="13000">to 13000</option>
+                                                                            <option value="14000">to 14000</option>
+                                                                            <option value="15000">to 15000</option>
+                                                                            <option value="16000">to 16000</option>
+                                                                            <option value="17000">to 17000</option>
+                                                                            <option value="18000">to 18000</option>
+                                                                            <option value="19000">to 19000</option>
+                                                                            <option value="20000">to 20000</option>
+                                                                            <option value="21000">to 21000</option>
+                                                                            <option value="22000">to 22000</option>
+                                                                            <option value="23000">to 23000</option>
+                                                                            <option value="24000">to 24000</option>
+                                                                            <option value="25000">to 25000</option>
+                                                                            <option value="30000">to 30000</option>
+                                                                            <option value="35000">to 35000</option>
+                                                                            <option value="40000">to 40000</option>
+                                                                            <option value="45000">to 45000</option>
+                                                                            <option value="50000">to 50000</option>
+                                                                            <option value="55000">to 55000</option>
+                                                                            <option value="60000">to 60000</option>
+                                                                            <option value="65000">to 65000</option>
+                                                                            <option value="70000">to 70000</option>
+                                                                            <option value="75000">to 75000</option>
+                                                                            <option value="80000">to 80000</option>
+                                                                            <option value="85000">to 85000</option>
+                                                                            <option value="90000">to 90000</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    &nbsp;
+                                                                    <select name="currencyId" id="currencyId">
+<!--                                                                        <option value="1" selected="">ЛЕВА</option>-->
+<!--                                                                        <option value="2">USD</option>-->
+<!--                                                                        <option value="3">EUR</option>-->
+                                                                        <option>$</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody></table>
+
+                                                        <table cellpadding="0" cellspacing="0" id="manualpricetable" style="display:none;">
+                                                            <tbody><tr>
+                                                                <td>
+                                                                    от
+                                                                    <input type="text" name="man_priceFrom" id="man_PriceFrom" size="6" class="textfield" value="0"> до
+                                                                    <input type="text" name="man_priceTo" id="man_PriceTo" size="6" class="textfield" value="0">
+                                                                </td>
+                                                                <td>
+                                                                    &nbsp;
+                                                                    <select name="man_currencyId" id="man_currencyId">
+                                                                        <option value="1" selected="">ЛЕВА</option>
+                                                                        <option value="2">USD</option>
+                                                                        <option value="3">EUR</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody></table>
+
+
+
+                                                    </td>
+                                                </tr>
+
+
+                                                </tbody></table>
+                                        </td>
+                                        <td width="10"><img src="images/px.gif" height="1" width="10"></td>
+                                        <td valign="top" style="padding:5px" width="100%">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="statetable">
+                                                <tbody><tr>
+                                                    <td valign="top">
+                                                        <table border="0" cellspacing="0" cellpadding="3" style="position: relative; bottom: 80px;">
+
+                                                            <tbody>
+                                                            <tr class="statecolumn">
+                                                                <td colspan="2" ><b>State</b><br><img src="images/px.gif" width="1" height="3"><br>
+                                                                    <select style="width:150px;" name="regionId" id="regionId" onchange="$('#city').load('?ajax=registration-city&amp;regionId='+parseInt(document.getElementById('regionId').value));return false;">
+                                                                        <option value="0">- All States -</option>
+                                                                        <option value="1">CA</option>
+                                                                        <option value="2">BH</option>
+                                                                        <option value="3">AL</option>
+                                                                        <option value="4">CO</option>
+                                                                        <option value="5">IL</option>
+                                                                        <option value="6">IN</option>
+                                                                        <option value="7">MI</option>
+                                                                        <option value="8">MO</option>
+                                                                        <option value="9">NE</option>
+                                                                        <option value="10">NJ</option>
+                                                                        <option value="11">NY</option>
+<!--                                                                        <option value="12">Монтана</option>-->
+<!--                                                                        <option value="13">Пазарджик</option>-->
+<!--                                                                        <option value="14">Перник</option>-->
+<!--                                                                        <option value="15">Плевен</option>-->
+<!--                                                                        <option value="16">Пловдив</option>-->
+<!--                                                                        <option value="17">Разград</option>-->
+<!--                                                                        <option value="18">Русе</option>-->
+<!--                                                                        <option value="19">Силистра</option>-->
+<!--                                                                        <option value="20">Сливен</option>-->
+<!--                                                                        <option value="21">Смолян</option>-->
+<!--                                                                        <option value="22">Софийска област</option>-->
+<!--                                                                        <option value="23">София - град</option>-->
+<!--                                                                        <option value="24">Стара&nbsp;Загора</option>-->
+<!--                                                                        <option value="25">Търговище</option>-->
+<!--                                                                        <option value="26">Хасково</option>-->
+<!--                                                                        <option value="27">Шумен</option>-->
+<!--                                                                        <option value="28">Ямбол</option>-->
+                                                                    </select>
+                                                                </td>
+
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <b>Населено място</b><br><img src="images/px.gif" width="1" height="3"><br>
+                                                                    <span id="city"><select name="cityId" id="cityId" style="width:150px;" disabled="">
+</select>
+</span></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td class="line-bottom-border" colspan="2"><img src="images/px.gif" width="1" height="1"></td>
+                                                            </tr>
+
+                                                            <tr class="conditioncolumn">
+                                                                <td colspan="2" nowrap=""> <b>Condition</b><br><img src="images/px.gif" width="1" height="3"><br>
+                                                                    <input type="checkbox" name="offersFor4" id="offersFor4" checked="" value="1">New<br>
+                                                                    <input type="checkbox" name="offersFor1" id="offersFor1" checked="" value="1">Used<br>
+                                                                    <input type="checkbox" name="offersFor2" id="offersFor2" value="1">Totaled/Crashed<br>
+                                                                    <input type="checkbox" name="offersFor3" id="offersFor3" value="1">For Parts
+                                                                </td>
+                                                            </tr>
+
+
+                                                            <tr>
+                                                                <td class="line-bottom-border" colspan="2"><img src="images/px.gif" width="1" height="1"></td>
+                                                            </tr>
+
+
+
+<!--                                                            <tr>-->
+<!--                                                                <td nowrap="" colspan="2"><input type="checkbox" id="barter" name="barter" value="1">Възможен бартер&nbsp;&nbsp;&nbsp;<input type="checkbox" id="leasing" name="leasing" value="1">Възможен лизинг</td>-->
+<!--                                                            </tr>-->
+<!--                                                            <tr>-->
+<!--                                                                <td coslpan="2"><input type="checkbox" id="dcredit" name="dcredit" value="1">Данъчен кредит</td>-->
+<!--                                                            </tr>-->
+
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td align="right" valign="top">
+
+                                                    </td></tr>
+                                                </tbody></table>
+                                        </td>
+                                    </tr>
+                                    </tbody></table>
+                                <table border="0" align="center" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody><tr>
+                                        <td class="top-padding-box" colspan="2">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" width="100%" align="center">
+                                            <table>
+                                                <tbody><tr>
+                                                    <td style="padding-right:10px;">
+                                                        <div class="bBoxT"><div class="bBox" style="background-color:black;border-radius: 5px;box-shadow: 2px 2px 3px #999; position: relative; left: 300%;"><button type="submit" class="searchbutton" >Search</button> </div></div>
+<!--                                                        <a href="javascript:;" onclick="SubmitSearchFormJs()" class="buttonPressedLink"><b>Search</b></a>-->
+                                                    </td>
+                                                </tr>
+                                                </tbody></table>
+
+                                        </td>
+                                    </tr>
+<!--                                    <tr>-->
+<!--                                        <td align="center" colspan="3" style="padding-top: 3px;">-->
+<!--                                            <a href="javascript:;" onclick="document.carsForm.fromhomeu.value=2;document.carsForm.advanced.value=1;document.carsForm.submit();return false;" class="link12orr">Разширено търсене</a>				 				 &nbsp;|&nbsp;-->
+<!--                                            <a href="javascript:;" onclick="DefaulSearchCars();" class="link12orr">Изчисти</a>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+                                    <tr>
+                                        <td class="bottom-padding-box" colspan="2">&nbsp;</td>
+                                    </tr>
+                                    </tbody></table>
+
+                            </td>
+                        </tr>
+                        </tbody></table>
+
+
+
+
+
+
+
+                </div></td>
+        </tr>
+        </tbody></table>
+</form>
+
+
+
+
+
+
 
 
 </body>

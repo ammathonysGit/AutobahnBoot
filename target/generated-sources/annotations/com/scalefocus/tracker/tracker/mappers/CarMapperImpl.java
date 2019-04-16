@@ -6,8 +6,8 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2019-04-14T19:27:57+0300",
-    comments = "version: 1.3.0.Final, compiler: javac, environment: Java 1.8.0_144 (Oracle Corporation)"
+    date = "2019-04-16T13:12:09+0300",
+    comments = "version: 1.3.0.Final, compiler: javac, environment: Java 1.8.0_201 (Oracle Corporation)"
 )
 public class CarMapperImpl implements CarMapper {
 
@@ -19,6 +19,8 @@ public class CarMapperImpl implements CarMapper {
 
         CarBindingModel carBindingModel = new CarBindingModel();
 
+        carBindingModel.setMileage( car.getMileage() );
+        carBindingModel.setLocation( car.getLocation() );
         carBindingModel.setId( car.getId() );
         carBindingModel.setBrand( car.getBrand() );
         carBindingModel.setModel( car.getModel() );
@@ -41,6 +43,8 @@ public class CarMapperImpl implements CarMapper {
 
         Car car = new Car();
 
+        car.setMileage( carBindingModel.getMileage() );
+        car.setLocation( carBindingModel.getLocation() );
         car.setId( carBindingModel.getId() );
         car.setBrand( carBindingModel.getBrand() );
         car.setModel( carBindingModel.getModel() );

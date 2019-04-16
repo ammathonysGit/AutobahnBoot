@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" th:href="@{/css/singlecarpage.css}" type="text/css">
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <link href="/css/spring-core.css"
+          th:href="@{/css/spring-core.css}" rel="stylesheet" media="screen"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+    <title>Car</title>
+
+</head>
+
+<body id="page">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" th:href="${'/'}"><h1 id="title"><span>Autobahn</span></h1></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav" style="position: relative;">
+            <li class="nav-item" >
+                <a class="nav-link" th:href="${'/'}" >Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" href="http://benz.bg/">Tuning</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" th:href="${'/contactus'}">Contact Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="${'/rim/'}">Rims</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="${'/parts'}">Parts</a>
+            </li>
+            <li class="nav-item dropdown" >
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cars
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="font-size: 15px; background-color: #ccc">
+                    <a class="dropdown-item"  th:href="${'/cars'}">Check out our vehicles</a>
+                    <a class="dropdown-item" th:href="${'/searchcarsform'}">Search for a vehicle</a>
+                    <a class="dropdown-item" th:href="${'/about'}">About the cars we sell</a>
+                </div>
+            </li>
+            <li id="signuploginactions" class="navbar-item">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a th:href="${'/registrationform'}">
+                        <button type="button" class="btn btn-secondary" >Sign Up</button>
+                    </a>
+                    <a th:href="${'/login'}">
+                        <button type="button" class="btn btn-secondary" >Log In</button>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+<table class="tableSingleCarPage" border="0" cellpadding="0" cellspacing="0" style="padding-top:5px;">
+
+    <tbody><tr>
+        <td valign="top" width="510">
+            <table width="510" border="0" cellspacing="0" cellpadding="5" class="ver13black">
+                <tbody><tr>
+                    <td valign="bottom" class="ver30black line-bottom-border" style="padding-top:10px; font-size: 40px; color: black; padding-left: 31%" th:text="${car.model}"><strong> </strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tbody><tr>
+                                    <span class="ver20black" ><strong th:text="'$' + ${car.price}" style=" bottom: 50px;   font-size: 30px; left: 140%; position: relative; color: black"></strong></span><br>
+                                </td>
+                            </tr>
+                            </tbody></table>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td style="padding-top:5px;padding-left:80px;">
+                        <table cellspacing="0" cellpadding="0" border="0" align="left" style="width: 100%;">
+                            <tbody><tr>
+                                <td valign="top">
+                                    <table cellspacing="5" cellpadding="0" border="0">
+                                        <tbody><tr>
+                                            <span style="font-size:20px;"><strong style="color:black;" th:text="' Production date: ' +  ${car.productiondate}"> </strong></span>
+                                        </tr>
+                                        <br>
+                                        <tr>
+                                            <span style="font-size:20px;"><strong style="color:black;" th:text="' Mileage: ' + ${car.mileage} + ' km'"> </strong></span>
+                                        </tr>
+                                        <br>
+                                        <tr>
+                                            <span style="font-size:20px;"><strong style="color:black;" th:text="' Fuel: ' +  ${car.fueltype}"> </strong></span>
+                                        </tr>
+                                        <br>
+                                        <tr>
+                                            <span style="font-size:20px;"><strong style="color:black;" th:text="' Transmission: ' +  ${car.transmissiontype}"> </strong></span>
+                                        </tr>
+                                        <br>
+                                        </tbody></table>
+                                </td>
+                                <td valign="top" style="padding-left:50px; position: relative; left: 50%;">
+                                    <table cellspacing="5" cellpadding="0" border="0" style="width: 100%; position: relative; left: 120%;">
+                                        <tbody>
+                                        <tr>
+                                            <span style="font-size:20px;"><strong style="color: black;" th:text="' Category: ' +  ${car.bodytype}"> </strong></span>
+                                        </tr>
+                                        <tr>
+                                            <span style="font-size:20px;"><strong style="color:black;" th:text="' Power: ' + ${car.horsepower} + ' (Hp)'"> </strong></span>
+                                        </tr>
+                                        <br>
+                                        <tr>
+                                            <span style="font-size:20px;"><strong style="color:black;" th:text="'Number of seats: 4/5'"> </strong></span>
+                                        </tr>
+                                        <br>
+                                        <tr>
+                                            <span style="font-size:20px;"><strong style="color:black;" th:text="' Colour: ' +  ${car.color}"> </strong></span>
+                                        </tr>
+                                        <br>
+
+                                        </tbody></table>
+                                </td>
+
+                            </tr><tr>
+                            </tr></tbody></table></td>
+                </tr>
+
+
+                <tr>
+                    <td style="padding-top:10px;">
+                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                            <tbody><tr>
+                                <td style="font-size: 3em;color:black;padding-bottom:3px; padding-left: 5px;" colspan="2" ><b>Features</b></td>
+                            </tr>
+                            <tr>
+                                <td class="line-bottom-border" colspan="2"><img alt="" src="images/px.gif" height="1"></td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top" style="padding-top:5px;color:black; font-size: 20px" width="110"><b>Comfort:</b></td>
+                                <td style="padding-top:5px;padding-left:5px; font-size: 15px; color: black;">
+                                    ABS,
+                                    Adaptive Cruise Control, Adaptive lighting, Air suspension, Alarm system, Alloy wheels, Ambient lighting, Arm rest, Autom. dimming interior mirror, Auxiliary heating, Blind spot assist, Bluetooth, Central locking, DAB radio									</td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top" style="padding-top:5px;color: black; font-size: 20px" width="110"><b>Safety:</b></td>
+                                <td style="padding-top:5px;padding-left:5px; font-size: 15px; color: black;">
+                                    Front, Rear, Camera, Self-steering systems, AirbagsFront and Side and More Airbags								</td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top" style="padding-top:5px;color:black; font-size: 20px" width="110"><b>Other:</b></td>
+                                <td style="padding-top:5px;padding-left:5px; font-size: 15px; color: black">
+                                    Electric windows, Emergency call system, ESP, Fatigue warning system, Four wheel drive, Full Service History, Hands-free kit, Head-up display, Heated steering wheel, High beam assist, Hill-start assist							</td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top" style="padding-top:5px;color:black; font-size: 20px" width="110"><b>Euro Standard:</b></td>
+                                <td style="padding-top:5px;padding-left:5px; font-size: 15px; color: black">
+                                    EURO 6									</td>
+                            </tr>
+                            </tbody></table>
+                    </td>
+                </tr>
+
+
+
+
+
+
+
+                <tr>
+                    <td style="padding-top:10px;">
+                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                            <tbody><tr>
+                                <td style="font-size: 1.2em;color:#2d2d2d;padding-bottom:3px; font-size: 25px; color: black; padding-left: 5px;"><b>Additional Information</b></td>
+                            </tr>
+                            <tr>
+                                <td class="line-bottom-border"></td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="padding-top:5px; font-size: 20px; color: black; padding-left: 15px"> We are one of the biggest producers of premium cars and the world's biggest manufacturer of commercial vehicles with a global reach. We provide financing, leasing, fleet management, insurance and innovative mobility services.</td>
+                            </tr>
+                            </tbody></table>
+                    </td>
+                </tr>
+
+
+<!--                <tr>-->
+<!--                    <td style="padding-top:20px;">-->
+
+<!--                        &lt;!&ndash; COMMENT AND VCARD &ndash;&gt;-->
+<!--                        <table border="0" cellspacing="0" cellpadding="0" width="510">-->
+<!--                            <tbody><tr>-->
+<!--                                <td width="10" style="padding-right:5px;padding-bottom:5px;"></td><td style="padding-bottom:5px;"><span style="font-size: 1.1em;color:#2d2d2d;"><b>За контакт с продавача</b></span></td>-->
+<!--                                <td width="5">&nbsp;</td>-->
+
+<!--                                <td align="center">-->
+<!--                                    <div class="tab_selected" id="tab_contact">-->
+<!--                                        <a href="javascript:;" onclick="CommentTabChange('contact',0);" class="buttonPressedLink"><b>За контакт</b></a>-->
+<!--                                    </div>-->
+<!--                                </td>-->
+
+
+<!--                                <td width="2">&nbsp;</td>-->
+
+<!--                                <td align="center">-->
+<!--                                    <div class="tab_not_selected" id="tab_comment">-->
+<!--                                        <a href="javascript:;" onclick="CommentTabChange('comment',1);" class="buttonNormalLink"><b>Изпрати запитване</b></a>-->
+<!--                                    </div>-->
+<!--                                </td>-->
+
+
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td colspan="6" valign="bottom" style="height: 2px; background-color:#ff6600;"></td>-->
+<!--                            </tr>-->
+<!--                            </tbody></table>-->
+
+<!--                        <script>-->
+<!--                            function CommentTabChange(type , click) {-->
+<!--                                if(type == 'contact') {-->
+<!--                                    $('#contacts_seller_conteiner').show();-->
+<!--                                    $('#tab_contact').removeClass('tab_not_selected');-->
+<!--                                    $('#tab_contact').addClass('tab_selected');-->
+<!--                                    $('#tab_contact').children().removeClass('buttonNormalLink');-->
+<!--                                    $('#tab_contact').children().addClass('buttonPressedLink');-->
+
+<!--                                    $('#tab_comment').removeClass('tab_selected');-->
+<!--                                    $('#tab_comment').addClass('tab_not_selected');-->
+<!--                                    $('#tab_comment').children().removeClass('buttonPressedLink');-->
+<!--                                    $('#tab_comment').children().addClass('buttonNormalLink');-->
+<!--                                    $('#inquiry').hide();-->
+<!--                                }-->
+<!--                                if(type == 'comment') {-->
+<!--                                    $('#contacts_seller_conteiner').hide();-->
+<!--                                    if(click) {-->
+<!--                                        $('#inquiry').load('?ajax=commentformajax&csub=&object_type_id=1&objectId=2974549&errors_name=', function () {-->
+<!--                                            window.location.hash = 'comment';-->
+<!--                                        });-->
+<!--                                    }-->
+<!--                                    $('#tab_comment').removeClass('tab_not_selected');-->
+<!--                                    $('#tab_comment').addClass('tab_selected');-->
+<!--                                    $('#tab_comment').children().removeClass('buttonNormalLink');-->
+<!--                                    $('#tab_comment').children().addClass('buttonPressedLink');-->
+
+<!--                                    $('#tab_contact').removeClass('tab_selected');-->
+<!--                                    $('#tab_contact').addClass('tab_not_selected');-->
+<!--                                    $('#tab_contact').children().removeClass('buttonPressedLink');-->
+<!--                                    $('#tab_contact').children().addClass('buttonNormalLink');-->
+<!--                                    $('#inquiry').show();-->
+<!--                                }-->
+<!--                            }-->
+<!--                        </script>-->
+
+
+<!--                        <div class="box-not-rounded">-->
+<!--                            <table border="0" cellspacing="0" cellpadding="0" width="498">-->
+<!--                                <tbody><tr>-->
+<!--                                    <td width="498" style="padding:0px;">-->
+
+<!--                                        <div id="contacts_seller_conteiner">-->
+<!--                                            <table border="0" cellspacing="0" cellpadding="0" width="100%">-->
+
+
+<!--                                                <tbody><tr>-->
+<!--                                                    <td style="padding-left:10px;" valign="top" width="50%">-->
+<!--                                                        <table cellpadding="0" cellspacing="0" border="0">-->
+<!--                                                            <tbody><tr>-->
+<!--                                                                <td align="left">-->
+<!--                                                                    <a href="https://www.cars.bg/company/dani-s/?t=cars" target="_blank" class="userlink"><img src="images/users_logos/2223.jpg" border="0"></a>-->
+<!--                                                                </td>-->
+<!--                                                            </tr>-->
+<!--                                                            <tr>-->
+<!--                                                                <td align="left" style="padding-top:5px;"><a href="https://www.cars.bg/company/dani-s/?t=cars" target="_blank" class="userlink"><b>С и Д Моторс </b></a></td>-->
+<!--                                                            </tr>-->
+<!--                                                            <tr>-->
+<!--                                                                <td align="left">-->
+<!--                                                                    <div style="padding-top:10px;padding-bottom:5px;">-->
+<!--                                                                        <script type="text/javascript" src="videooverlay.js?v=6"></script>-->
+<!--                                                                        <link rel="stylesheet" href="videooverlay.css?v=6" type="text/css">-->
+<!--                                                                        <a href="javascript:;" onclick="createOverlayH(1701);" class="map_icon">виж на карта</a>-->
+
+<!--                                                                        <div id="accountmap" style="display:none;" class="ajax-promovideo-container">-->
+<!--                                                                            <a href="javascript:;" onclick="hideAccountMap();" class="popup-close-btn" style="margin-top:-11px;margin-right:-10px;"><img src="/images/popup_close_ico.gif" alt="затвори" title="затвори" border="0/"></a>-->
+<!--                                                                            <p style=" padding: 19px 0px 1px 10px; margin: 0px; "><b>С и Д Моторс </b>, бул.Цариградско шосе до Парк-музей"Врана"-->
+<!--                                                                                ,  София</p>-->
+<!--                                                                            <div id="accountmap_frame">-->
+<!--                                                                            </div>-->
+<!--                                                                            <div class="buttons" style="text-align:center;">-->
+<!--                                                                                <center>-->
+<!--                                                                                    <table border="0" cellpadding="0" cellspacing="0" bgcolor="#FF6600">-->
+<!--                                                                                        <tbody><tr>-->
+<!--                                                                                            <td><img src="images/orr_corr_lt.gif" width="5" height="5"></td>-->
+<!--                                                                                            <td></td>-->
+<!--                                                                                            <td><img src="images/orr_corr_rt.gif" width="5" height="5"></td>-->
+<!--                                                                                        </tr>-->
+<!--                                                                                        <tr>-->
+<!--                                                                                            <td></td>-->
+<!--                                                                                            <td style="padding-left:5px; padding-right:5px;"><a href="javascript:;" onclick="hideAccountMap();" class="buttonPressedLink"><b><span id="searchUsedButton">Затвори</span></b></a></td>-->
+<!--                                                                                            <td></td>-->
+<!--                                                                                        </tr>-->
+<!--                                                                                        <tr>-->
+<!--                                                                                            <td><img src="images/orr_corr_lb.gif" width="5" height="5"></td>-->
+<!--                                                                                            <td></td>-->
+<!--                                                                                            <td><img src="images/orr_corr_rb.gif" width="5" height="5"></td>-->
+<!--                                                                                        </tr>-->
+<!--                                                                                        </tbody></table>-->
+<!--                                                                                </center>-->
+<!--                                                                                <br>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+
+
+
+<!--                                                                    бул.Цариградско шосе до Парк-музей"Врана"-->
+<!--                                                                    <br><b>София</b></td>-->
+<!--                                                            </tr>-->
+<!--                                                            </tbody></table>-->
+<!--                                                    </td>-->
+
+<!--                                                    <td valign="top" style="padding-left:10px;padding-top: 5px" width="50%">-->
+<!--                                                        <table cellpadding="0" cellspacing="0" border="0">-->
+<!--                                                            <tbody><tr>-->
+<!--                                                                <td valign="top" align="right"><img alt="Телефон" src="images/phone.gif"></td>-->
+<!--                                                                <td style="padding-left:5px;" valign="top">-->
+
+
+<!--                                                                    0884193119												</td>-->
+<!--                                                            </tr>-->
+<!--                                                            <tr>-->
+<!--                                                                <td colspan="2"><img src="images/px.gif" width="1" height="5"></td>-->
+<!--                                                            </tr>-->
+<!--                                                            </tbody></table>-->
+
+<!--                                                    </td>-->
+<!--                                                </tr>-->
+<!--                                                <tr>-->
+<!--                                                    <td style="padding-left:10px;padding-right:10px;padding-top:15px;" colspan="2"><img alt="" src="images/px.gif" height="1" style="border-top:1px solid #999999;" width="100%"></td>-->
+<!--                                                </tr>-->
+<!--                                                <tr>-->
+<!--                                                    <td align="left" colspan="2" style="padding-top:5px;padding-left:10px;padding-bottom:5px;">Вижте всички обяви от <b>С и Д Моторс </b> в cars.bg на: <a href="https://www.cars.bg/company/dani-s/?t=cars" target="_blank" class="mainlink">dani-s.cars.bg</a></td>-->
+<!--                                                </tr>-->
+
+<!--                                                </tbody></table>-->
+
+<!--                                        </div>-->
+
+
+<!--                                        <div id="inquiry" name="inquiry">-->
+<!--                                        </div>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                </tbody></table>-->
+<!--                        </div>-->
+<!--                        <a name="comment"></a>-->
+<!--                        &lt;!&ndash; -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+
+<!--                    </td>-->
+<!--                </tr>-->
+                </tbody></table>
+        </td>
+        <td width="10"><img alt="" src="images/px.gif" width="10" height="1"></td>
+        <td valign="top" align="left" width="450" style="padding-top:10px;">
+
+
+
+            <!-- PHOTO GALLERY -->
+            <script type="text/javascript" src="js/thickbox-compressed_new.js?v=2"></script>
+            <link rel="stylesheet" href="css/thickbox_new.css?v=3" type="text/css" media="screen">
+            <style>
+                .selImgDiv{border:2px solid #FF6600;}
+                .nImgDiv{border:2px solid #FFFFFF;}
+            </style>
+            <div id="big_img" style="padding-top: 25px; width: 448px; height: 255px;" >
+
+
+                <div id="prev_i_img" style="position: absolute; margin-top: 106.5px; margin-left: 0px; width: 24px; height: 43px; z-index: 4;"><a href="javascript:prev_img();"><img src="images/prev_ico_s.gif" width="24" height="43" border="0" onmouseover="this.src='images/prev_ico_s_act.gif';" onmouseout="this.src='images/prev_ico_s.gif';"></a></div>
+                <div id="next_i_img" style="position: absolute; margin-top: 106.5px; margin-left: 424px; margin-right: 0px; width: 24px; height: 43px; z-index: 4;"><a href="javascript:next_img();"><img src="images/next_ico_s.gif" width="24" height="43" border="0" onmouseover="this.src='images/next_ico_s_act.gif';" onmouseout="this.src='images/next_ico_s.gif';"></a></div>
+                <div style="float:left;z-index:3;width:448px;text-align:center;"><a href="javascript:tb_show(null, 'https://g1.cars.bg/2019-02-03_2/27574277o.jpg','gallery');" id="img_cont"><img src="/image/carousel-home-page-images/140.jpg" style="height: 45%; width: 100%" sborder="0" onfocus="this.blur();"></a></div>
+            </div>
+            <table border="0" cellspacing="0" cellpadding="0" style="padding-top:5px;">
+                <tbody><tr>
+                    <td align="left" valign="top"><div class="selImgDiv" id="smallimg_1">
+                        <a href="./image/carousel-home-page-images/140.jpg" class="thickbox" rel="gallery"></a>
+                        <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g1.cars.bg/2019-02-03_2/27574277o.jpg','gallery');}else{load_img(1);}" onfocus="this.blur();"><img src="./image/carousel-home-page-images/140.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                    <td width="2"><img width="2" height="1" src="images/px.gif"></td>
+                    <td align="left" valign="top"><div class="nImgDiv" id="smallimg_2">
+                        <a href="https://g4.cars.bg/2019-02-03_2/27574259o.jpg" class="thickbox" rel="gallery"></a>
+                        <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g4.cars.bg/2019-02-03_2/27574259o.jpg','gallery');}else{load_img(2);}" onfocus="this.blur();"><img src="https://g4.cars.bg/2019-02-03_2/27574259s.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                    <td width="2"><img width="2" height="1" src="images/px.gif"></td>
+                    <td align="left" valign="top"><div class="nImgDiv" id="smallimg_3">
+                        <a href="https://g3.cars.bg/2019-02-03_2/27574269o.jpg" class="thickbox" rel="gallery"></a>
+                        <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g3.cars.bg/2019-02-03_2/27574269o.jpg','gallery');}else{load_img(3);}" onfocus="this.blur();"><img src="https://g3.cars.bg/2019-02-03_2/27574269s.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                    <td width="2"><img width="2" height="1" src="images/px.gif"></td>
+                    <td align="left" valign="top"><div class="nImgDiv" id="smallimg_4">
+                        <a href="https://g1.cars.bg/2019-02-03_2/27574251o.jpg" class="thickbox" rel="gallery"></a>
+                        <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g1.cars.bg/2019-02-03_2/27574251o.jpg','gallery');}else{load_img(4);}" onfocus="this.blur();"><img src="https://g1.cars.bg/2019-02-03_2/27574251s.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                    <td width="2"><img width="2" height="1" src="images/px.gif"></td>
+                    <td align="left" valign="top"><div class="nImgDiv" id="smallimg_5">
+                        <a href="https://g1.cars.bg/2019-02-03_2/27574236o.jpg" class="thickbox" rel="gallery"></a>
+                        <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g1.cars.bg/2019-02-03_2/27574236o.jpg','gallery');}else{load_img(5);}" onfocus="this.blur();"><img src="https://g1.cars.bg/2019-02-03_2/27574236s.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                    <td width="2"><img width="2" height="1" src="images/px.gif"></td>
+                </tr><tr>					  <td align="left" valign="top"><div class="nImgDiv" id="smallimg_6">
+                    <a href="https://g3.cars.bg/2019-02-03_2/27574245o.jpg" class="thickbox" rel="gallery"></a>
+                    <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g3.cars.bg/2019-02-03_2/27574245o.jpg','gallery');}else{load_img(6);}" onfocus="this.blur();"><img src="https://g3.cars.bg/2019-02-03_2/27574245s.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                    <td width="2"><img width="2" height="1" src="images/px.gif"></td>
+                    <td align="left" valign="top"><div class="nImgDiv" id="smallimg_7">
+                        <a href="https://g4.cars.bg/2019-02-03_2/27574231o.jpg" class="thickbox" rel="gallery"></a>
+                        <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g4.cars.bg/2019-02-03_2/27574231o.jpg','gallery');}else{load_img(7);}" onfocus="this.blur();"><img src="https://g4.cars.bg/2019-02-03_2/27574231s.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                    <td width="2"><img width="2" height="1" src="images/px.gif"></td>
+                    <td align="left" valign="top"><div class="nImgDiv" id="smallimg_8">
+                        <a href="https://g3.cars.bg/2019-02-03_2/27574210o.jpg" class="thickbox" rel="gallery"></a>
+                        <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g3.cars.bg/2019-02-03_2/27574210o.jpg','gallery');}else{load_img(8);}" onfocus="this.blur();"><img src="https://g3.cars.bg/2019-02-03_2/27574210s.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                    <td width="2"><img width="2" height="1" src="images/px.gif"></td>
+                    <td align="left" valign="top"><div class="nImgDiv" id="smallimg_9">
+                        <a href="https://g4.cars.bg/2019-02-03_2/27574188o.jpg" class="thickbox" rel="gallery"></a>
+                        <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g4.cars.bg/2019-02-03_2/27574188o.jpg','gallery');}else{load_img(9);}" onfocus="this.blur();"><img src="https://g4.cars.bg/2019-02-03_2/27574188s.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                    <td width="2"><img width="2" height="1" src="images/px.gif"></td>
+                    <td align="left" valign="top"><div class="nImgDiv" id="smallimg_10">
+                        <a href="https://g1.cars.bg/2019-02-03_2/27574205o.jpg" class="thickbox" rel="gallery"></a>
+                        <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g1.cars.bg/2019-02-03_2/27574205o.jpg','gallery');}else{load_img(10);}" onfocus="this.blur();"><img src="https://g1.cars.bg/2019-02-03_2/27574205s.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                    <td width="2"><img width="2" height="1" src="images/px.gif"></td>
+                </tr><tr>					  <td align="left" valign="top"><div class="nImgDiv" id="smallimg_11">
+                    <a href="https://g3.cars.bg/2019-02-03_2/27574201o.jpg" class="thickbox" rel="gallery"></a>
+                    <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g3.cars.bg/2019-02-03_2/27574201o.jpg','gallery');}else{load_img(11);}" onfocus="this.blur();"><img src="https://g3.cars.bg/2019-02-03_2/27574201s.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                    <td width="2"><img width="2" height="1" src="images/px.gif"></td>
+                    <td align="left" valign="top"><div class="nImgDiv" id="smallimg_12">
+                        <a href="https://g1.cars.bg/2019-02-03_2/27574213o.jpg" class="thickbox" rel="gallery"></a>
+                        <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g1.cars.bg/2019-02-03_2/27574213o.jpg','gallery');}else{load_img(12);}" onfocus="this.blur();"><img src="https://g1.cars.bg/2019-02-03_2/27574213s.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                    <td width="2"><img width="2" height="1" src="images/px.gif"></td>
+                    <td align="left" valign="top"><div class="nImgDiv" id="smallimg_13">
+                        <a href="https://g1.cars.bg/2019-02-03_2/27574224o.jpg" class="thickbox" rel="gallery"></a>
+                        <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g1.cars.bg/2019-02-03_2/27574224o.jpg','gallery');}else{load_img(13);}" onfocus="this.blur();"><img src="https://g1.cars.bg/2019-02-03_2/27574224s.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                    <td width="2"><img width="2" height="1" src="images/px.gif"></td>
+                    <td align="left" valign="top"><div class="nImgDiv" id="smallimg_14">
+                        <a href="https://g2.cars.bg/2019-02-03_2/27574220o.jpg" class="thickbox" rel="gallery"></a>
+                        <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g2.cars.bg/2019-02-03_2/27574220o.jpg','gallery');}else{load_img(14);}" onfocus="this.blur();"><img src="https://g2.cars.bg/2019-02-03_2/27574220s.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                    <td width="2"><img width="2" height="1" src="images/px.gif"></td>
+                    <td align="left" valign="top"><div class="nImgDiv" id="smallimg_15">
+                        <a href="https://g1.cars.bg/2019-02-03_2/27574194o.jpg" class="thickbox" rel="gallery"></a>
+                        <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g1.cars.bg/2019-02-03_2/27574194o.jpg','gallery');}else{load_img(15);}" onfocus="this.blur();"><img src="https://g1.cars.bg/2019-02-03_2/27574194s.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                </tr>
+                </tbody></table>
+            <script>
+                if (253 > 200 ) {
+                    $('#big_img').height(255);
+                    $('#prev_i_img').css('margin-top', '106.5px');
+                    $('#next_i_img').css('margin-top', '106.5px');
+                }
+                var arImgPrev = new Array();arImgPrev[1] = 'https://g1.cars.bg/2019-02-03_2/27574277b.jpg';arImgPrev[2] = 'https://g4.cars.bg/2019-02-03_2/27574259b.jpg';arImgPrev[3] = 'https://g3.cars.bg/2019-02-03_2/27574269b.jpg';arImgPrev[4] = 'https://g1.cars.bg/2019-02-03_2/27574251b.jpg';arImgPrev[5] = 'https://g1.cars.bg/2019-02-03_2/27574236b.jpg';arImgPrev[6] = 'https://g3.cars.bg/2019-02-03_2/27574245b.jpg';arImgPrev[7] = 'https://g4.cars.bg/2019-02-03_2/27574231b.jpg';arImgPrev[8] = 'https://g3.cars.bg/2019-02-03_2/27574210b.jpg';arImgPrev[9] = 'https://g4.cars.bg/2019-02-03_2/27574188b.jpg';arImgPrev[10] = 'https://g1.cars.bg/2019-02-03_2/27574205b.jpg';arImgPrev[11] = 'https://g3.cars.bg/2019-02-03_2/27574201b.jpg';arImgPrev[12] = 'https://g1.cars.bg/2019-02-03_2/27574213b.jpg';arImgPrev[13] = 'https://g1.cars.bg/2019-02-03_2/27574224b.jpg';arImgPrev[14] = 'https://g2.cars.bg/2019-02-03_2/27574220b.jpg';arImgPrev[15] = 'https://g1.cars.bg/2019-02-03_2/27574194b.jpg';                    var arImgGal = new Array();arImgGal[1] = 'https://g1.cars.bg/2019-02-03_2/27574277o.jpg';arImgGal[2] = 'https://g4.cars.bg/2019-02-03_2/27574259o.jpg';arImgGal[3] = 'https://g3.cars.bg/2019-02-03_2/27574269o.jpg';arImgGal[4] = 'https://g1.cars.bg/2019-02-03_2/27574251o.jpg';arImgGal[5] = 'https://g1.cars.bg/2019-02-03_2/27574236o.jpg';arImgGal[6] = 'https://g3.cars.bg/2019-02-03_2/27574245o.jpg';arImgGal[7] = 'https://g4.cars.bg/2019-02-03_2/27574231o.jpg';arImgGal[8] = 'https://g3.cars.bg/2019-02-03_2/27574210o.jpg';arImgGal[9] = 'https://g4.cars.bg/2019-02-03_2/27574188o.jpg';arImgGal[10] = 'https://g1.cars.bg/2019-02-03_2/27574205o.jpg';arImgGal[11] = 'https://g3.cars.bg/2019-02-03_2/27574201o.jpg';arImgGal[12] = 'https://g1.cars.bg/2019-02-03_2/27574213o.jpg';arImgGal[13] = 'https://g1.cars.bg/2019-02-03_2/27574224o.jpg';arImgGal[14] = 'https://g2.cars.bg/2019-02-03_2/27574220o.jpg';arImgGal[15] = 'https://g1.cars.bg/2019-02-03_2/27574194o.jpg';                    var selN = 1;
+                var offerTitle = 'Mazda 2 1.4d-AUTOMAT, София';
+                var offerPrice = '3,999&nbsp;ЛЕВА';
+                var count = arImgPrev.length;
+                var started = 0;
+                function load_img(imgN){
+                    document.getElementById('smallimg_'+selN).className='nImgDiv';
+                    document.getElementById('smallimg_'+imgN).className='selImgDiv';
+                    document.getElementById('img_cont').innerHTML = '';
+                    document.getElementById('img_cont').innerHTML = '<img src="'+arImgPrev[imgN]+'" border="0">';
+                    document.getElementById('img_cont').href = '';
+                    document.getElementById('img_cont').href = "javascript:tb_show(null, '"+arImgGal[imgN]+"','gallery');";
+
+                    document.getElementById('img_cont').blur();
+                    selN = imgN;
+                }
+                function next_img(){
+                    if(arImgPrev[selN+1]){
+                        imgN = selN+1;
+                    } else if((selN+1) == count){
+                        imgN = 1;
+                    } else {
+                        imgN = 1;
+                    }
+                    load_img(imgN);
+                }
+                function prev_img(){
+                    if(arImgPrev[selN-1]){
+                        imgN = selN-1;
+                    } else if((selN-1) == 0){
+                        imgN = count-1;
+                    } else {
+                        imgN = 1;
+                    }
+                    load_img(imgN);
+                }
+            </script>
+            <br>
+            <!-- ---------------->
+
+
+          <!--  Print the page -->
+<!--            <table border="0" cellpadding="0" cellspacing="0" width="100%" align="center">-->
+<!--                <tbody><tr>-->
+<!--                    <td align="left">-->
+
+<!--                        <table border="0" cellpadding="0" cellspacing="0">-->
+<!--                            <tbody><tr>-->
+<!--                                <td>-->
+<!--                                    Страница на офертата:<br><img width="1" height="3" src="images/px.gif"><br><input type="text" value="https://www.cars.bg/offer/c2974549" style="width:280px;" readonly="" class="url_textbox" onclick="this.select();">-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>-->
+<!--                                    <table cellpadding="0" cellspacing="0" width="185">-->
+<!--                                        <tbody><tr>-->
+<!--                                            <td style="padding-top:5px;"><span class="doNotPrint"><a href="javascript:;" onclick="window.print();return false;"><div class="iconed icon-printer" style="font-size: 1.2em;margin-right: 3px;" title="Отпечатай обявата"></div></a></span></td>-->
+<!--                                            <td style="padding-top:5px;"> <a href="javascript:;" onclick="window.print();return false;" style="font-size: 1em;color:#000000;text-decoration:underline;" title="Отпечатай обявата">Отпечатай обявата</a></td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                            <td style="padding-top:5px;"><a href="https://www.cars.bg/?go=home&amp;p=reportabuse&amp;object_typeId=1&amp;objectId=2974549" rel="nofollow"><div class="iconed icon-close" style="font-size: 1.2em;margin-right: 3px; color: #FF0000;" title="Нередност с обявата"></div></a></td>-->
+<!--                                            <td style="padding-top:5px;"><a href="https://www.cars.bg/?go=home&amp;p=reportabuse&amp;object_typeId=1&amp;objectId=2974549" style="font-size: 1em;color:#000000;text-decoration:underline;" rel="nofollow" title="Нередност с обявата">Нередност с обявата</a></td>-->
+<!--                                        </tr>-->
+<!--                                        </tbody></table>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            </tbody></table>-->
+
+<!--                    </td>-->
+<!--                </tr>-->
+
+<!--                </tbody></table>-->
+
+
+            <script type="text/javascript">
+                statsAdd('site=cars.bg&object_id=2974549&object_type_id=2&action=view&ref=&timestamp=1555412700');
+
+            </script>
+            <script type="text/javascript">
+                statsAdd('site=cars.bg&object_id=1&object_type_id=3&action=view&timestamp=1555412700');
+
+            </script>
+        </td>
+    </tr>
+
+
+
+
+
+    </tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
