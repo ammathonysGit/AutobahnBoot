@@ -1,11 +1,14 @@
 package com.scalefocus.tracker.tracker.bootstrap;
 
-import com.scalefocus.tracker.tracker.model.bindingmodels.CarBindingModel;
+import com.scalefocus.tracker.tracker.entity.Car;
 import com.scalefocus.tracker.tracker.services.CarService;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+
+
 
 @Component
 public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> {
@@ -24,7 +27,7 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     }
 
     private void loadCars() {
-        CarBindingModel carCKlasse = new CarBindingModel();
+        Car carCKlasse = new Car();
         carCKlasse.setBodytype("Sedan");
         carCKlasse.setBrand("Mercedes");
         carCKlasse.setColor("Silver Metallic");
@@ -32,29 +35,59 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carCKlasse.setPrice(100000.00);
         carCKlasse.setTransmissiontype("Automatic");
         carCKlasse.setModel("C Class 220 CDI");
-        carCKlasse.setProductiondate("12/12/2018");
+        carCKlasse.setProductiondate(new DateTime().withYear(2018).withMonthOfYear(2).withDayOfMonth(6));
         carCKlasse.setHorsepower(204);
-        carCKlasse.setLocation("BG, Sofia");
+        carCKlasse.setLocation("CA");
         carCKlasse.setMileage(300);
 
         carService.saveCar(carCKlasse);
 
-        CarBindingModel carEKlasse = new CarBindingModel();
-        carEKlasse.setBodytype("Sedan");
+        Car carEKlasse = new Car();
+        carEKlasse.setBodytype("Saloon");
         carEKlasse.setBrand("Mercedes");
         carEKlasse.setColor("Black Metallic");
         carEKlasse.setFueltype("Petrol");
-        carEKlasse.setPrice(120000.00);
+        carEKlasse.setPrice(50000.00);
         carEKlasse.setTransmissiontype("Automatic");
         carEKlasse.setModel("E Class 63 AMG");
-        carEKlasse.setProductiondate("01/01/2019");
+        carEKlasse.setProductiondate(new DateTime().withYear(2018).withMonthOfYear(2).withDayOfMonth(6));
         carEKlasse.setHorsepower(610);
-        carEKlasse.setLocation("BG, Sofia");
+        carEKlasse.setLocation("CA");
         carEKlasse.setMileage(50);
 
         carService.saveCar(carEKlasse);
 
-        CarBindingModel carGKlasse = new CarBindingModel();
+        Car carE2Klasse = new Car();
+        carE2Klasse.setBodytype("Saloon");
+        carE2Klasse.setBrand("Mercedes");
+        carE2Klasse.setColor("Black Metallic");
+        carE2Klasse.setFueltype("Petrol");
+        carE2Klasse.setPrice(50000.00);
+        carE2Klasse.setTransmissiontype("Automatic");
+        carE2Klasse.setModel("E Class 63 AMG");
+        carE2Klasse.setProductiondate(new DateTime().withYear(2018).withMonthOfYear(2).withDayOfMonth(6));
+        carE2Klasse.setHorsepower(610);
+        carE2Klasse.setLocation("CA");
+        carE2Klasse.setMileage(50);
+
+        carService.saveCar(carE2Klasse);
+
+        Car carE3Klasse = new Car();
+        carE3Klasse.setBodytype("Saloon");
+        carE3Klasse.setBrand("Mercedes");
+        carE3Klasse.setColor("Black Metallic");
+        carE3Klasse.setFueltype("Petrol");
+        carE3Klasse.setPrice(50000.00);
+        carE3Klasse.setTransmissiontype("Automatic");
+        carE3Klasse.setModel("E Class 63 AMG");
+        carE3Klasse.setProductiondate(new DateTime().withYear(2018).withMonthOfYear(2).withDayOfMonth(6));
+        carE3Klasse.setHorsepower(610);
+        carE3Klasse.setLocation("CA");
+        carE3Klasse.setMileage(50);
+
+        carService.saveCar(carE3Klasse);
+
+        Car carGKlasse = new Car();
         carGKlasse.setBodytype("SUV");
         carGKlasse.setBrand("Mercedes");
         carGKlasse.setColor("Black");
@@ -62,14 +95,14 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carGKlasse.setPrice(350000.00);
         carGKlasse.setTransmissiontype("Automatic");
         carGKlasse.setModel("G Class 65 AMG");
-        carGKlasse.setProductiondate("21/02/2019");
+        carGKlasse.setProductiondate(new DateTime().withYear(2018).withMonthOfYear(2).withDayOfMonth(6));
         carGKlasse.setHorsepower(800);
         carGKlasse.setMileage(100);
-        carGKlasse.setLocation("LA, B.H");
+        carGKlasse.setLocation("LA");
 
         carService.saveCar(carGKlasse);
 
-        CarBindingModel carSKlasse = new CarBindingModel();
+        Car carSKlasse = new Car();
         carSKlasse.setBodytype("Limousine");
         carSKlasse.setBrand("Mercedes");
         carSKlasse.setColor("Silver Arrow");
@@ -77,14 +110,14 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carSKlasse.setPrice(170000.00);
         carSKlasse.setTransmissiontype("Automatic");
         carSKlasse.setModel("S Class 550");
-        carSKlasse.setProductiondate("17/01/2019");
+        carSKlasse.setProductiondate(new DateTime().withYear(2018).withMonthOfYear(2).withDayOfMonth(6));
         carSKlasse.setHorsepower(510);
-        carSKlasse.setLocation("CA, C.C");
+        carSKlasse.setLocation("CA");
         carSKlasse.setMileage(20);
 
         carService.saveCar(carSKlasse);
 
-        CarBindingModel carCLAKlasse = new CarBindingModel();
+        Car carCLAKlasse = new Car();
         carCLAKlasse.setBodytype("Sedan");
         carCLAKlasse.setBrand("Mercedes");
         carCLAKlasse.setColor("Black Arrow");
@@ -92,44 +125,44 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carCLAKlasse.setPrice(90000.00);
         carCLAKlasse.setTransmissiontype("Automatic");
         carCLAKlasse.setModel("CLA Class 350");
-        carCLAKlasse.setProductiondate("17/01/2019");
+        carCLAKlasse.setProductiondate(new DateTime().withYear(2018).withMonthOfYear(2).withDayOfMonth(6));
         carCLAKlasse.setHorsepower(320);
-        carCLAKlasse.setLocation("CA, C.C");
+        carCLAKlasse.setLocation("CA");
         carCLAKlasse.setMileage(20);
 
         carService.saveCar(carCLAKlasse);
 
-        CarBindingModel carGLKKlasse = new CarBindingModel();
+        Car carGLKKlasse = new Car();
         carGLKKlasse.setBodytype("SUV");
         carGLKKlasse.setBrand("Mercedes");
         carGLKKlasse.setColor("Black");
         carGLKKlasse.setFueltype("Diesel");
-        carGLKKlasse.setPrice(95000.00);
+        carGLKKlasse.setPrice(75000.00);
         carGLKKlasse.setTransmissiontype("Automatic");
         carGLKKlasse.setModel("GLK Class 420 CDI");
-        carGLKKlasse.setProductiondate("17/01/2019");
+        carGLKKlasse.setProductiondate(new DateTime().withYear(2018).withMonthOfYear(2).withDayOfMonth(6));
         carGLKKlasse.setHorsepower(350);
-        carGLKKlasse.setLocation("CA, C.C");
+        carGLKKlasse.setLocation("CA");
         carGLKKlasse.setMileage(157);
 
         carService.saveCar(carGLKKlasse);
 
-        CarBindingModel carBKlasse = new CarBindingModel();
+        Car carBKlasse = new Car();
         carBKlasse.setBodytype("SUV");
         carBKlasse.setBrand("Mercedes");
         carBKlasse.setColor("Silver");
         carBKlasse.setFueltype("Diesel");
-        carBKlasse.setPrice(95000.00);
+        carBKlasse.setPrice(60000.00);
         carBKlasse.setTransmissiontype("Manual");
         carBKlasse.setModel("B Class 350 CDI");
-        carBKlasse.setProductiondate("20/03/2019");
+        carBKlasse.setProductiondate(new DateTime().withYear(2018).withMonthOfYear(2).withDayOfMonth(6));
         carBKlasse.setHorsepower(300);
-        carBKlasse.setLocation("CA, C.C");
+        carBKlasse.setLocation("CA");
         carBKlasse.setMileage(200);
 
         carService.saveCar(carBKlasse);
 
-        CarBindingModel carXKlasse = new CarBindingModel();
+        Car carXKlasse = new Car();
         carXKlasse.setBodytype("SUV");
         carXKlasse.setBrand("Mercedes");
         carXKlasse.setColor("White");
@@ -137,9 +170,9 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carXKlasse.setPrice(13000.00);
         carXKlasse.setTransmissiontype("Automatic");
         carXKlasse.setModel("X Class 420 CDI");
-        carXKlasse.setProductiondate("20/03/2019");
+        carXKlasse.setProductiondate(new DateTime().withYear(2018).withMonthOfYear(2).withDayOfMonth(6));
         carXKlasse.setHorsepower(350);
-        carXKlasse.setLocation("CA, C.C");
+        carXKlasse.setLocation("CA");
         carXKlasse.setMileage(200);
 
         carService.saveCar(carXKlasse);

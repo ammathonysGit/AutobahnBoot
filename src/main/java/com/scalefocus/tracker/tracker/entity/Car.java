@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -29,8 +31,8 @@ public class Car {
     private String color;
     @Column(nullable = false)
     private String transmissiontype;
-    @Column(nullable = false)
-    private String productiondate;
+    @Column(nullable = false, length = 500)
+    private DateTime productiondate;
     @Column(nullable = false)
     private String fueltype;
     @Column(nullable = false)
@@ -39,6 +41,13 @@ public class Car {
     private Integer mileage;
     private String location;
 
+    public DateTime getProductiondate() {
+        return productiondate;
+    }
+
+    public void setProductiondate(DateTime productiondate) {
+        this.productiondate = productiondate;
+    }
 
     public Car () { }
 
@@ -114,13 +123,6 @@ public class Car {
         this.transmissiontype = transmissiontype;
     }
 
-    public String getProductiondate() {
-        return productiondate;
-    }
-
-    public void setProductiondate(String productiondate) {
-        this.productiondate = productiondate;
-    }
 
     public String getFueltype() {
         return fueltype;

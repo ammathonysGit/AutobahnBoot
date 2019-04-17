@@ -69,16 +69,16 @@
 
 
 
-<form th:action="@{'/carsearchform/results'}" method="post" id="carsForm" name="carsForm" class="search-form" style="background-color: #cccc; height: 898px;">
-    <input type="hidden" name="go" value="cars">
-    <input type="hidden" name="search" value="1">
-    <input type="hidden" name="advanced" id="advanced" value="1">
-    <input type="hidden" name="fromhomeu" value="1">
-    <input type="hidden" name="publishedTime" id="publishedTime" value="0">
-    <input type="hidden" name="filterOrderBy" id="filterOrderBy" value="1">
-    <input type="hidden" name="showPrice" id="showPrice" value="0">
-    <input type="hidden" name="autotype" value="1">
-    <input type="hidden" name="stateId" value="1">
+<form th:action="@{'/carsearchform/results'}" th:method="post" th:object="${carBindingModel}"  id="carsForm" name="carsForm" class="search-form" style="background-color: #cccc; height: 898px;">
+<!--    <input type="hidden" name="go" value="cars">-->
+<!--    <input type="hidden" name="search" value="1">-->
+<!--    <input type="hidden" name="advanced" id="advanced" value="1">-->
+<!--    <input type="hidden" name="fromhomeu" value="1">-->
+<!--    <input type="hidden" name="publishedTime" id="publishedTime" value="0">-->
+<!--    <input type="hidden" name="filterOrderBy" id="filterOrderBy" value="1">-->
+<!--    <input type="hidden" name="showPrice" id="showPrice" value="0">-->
+<!--    <input type="hidden" name="autotype" value="1">-->
+<!--    <input type="hidden" name="stateId" value="1">-->
 
     <table  border="0" cellpadding="0" cellspacing="0" class="searchformtable">
         <tbody><tr>
@@ -137,25 +137,25 @@
                                                 <tr id="coupecontainer" class="vehicleandnumberofdoorscolumn">
                                                     <td>
 										<span id="coupespan" >
-										<b>Vehicle type</b><br><img src="images/px.gif" width="1" height="3"><br>
-										<select style="width:150px;" name="categoryId" id="categoryId">
-										<option value="0">- All -</option>
-																																<option value="1">Saloon</option>
-																																											<option value="2">Small car</option>
-																																											<option value="4">Estate Car</option>
-																																											<option value="5">Coupe</option>
-																																											<option value="6">Cabriolet</option>
-																																											<option value="7">SUV</option>
-																																											<option value="8">Pickup truck</option>
-																																											<option value="9">Van</option>
+										<b>Vehicle type</b><br><br>
+										<select style="width:150px;" name="categoryId" id="categoryId"  th:field="*{bodytype}" >
+										<option value="All">- All -</option>
+																																<option value="Saloon">Saloon</option>
+																																											<option value="Small car">Small car</option>
+																																											<option value="Estate Car">Estate Car</option>
+																																											<option value="Coupe">Coupe</option>
+																																											<option value="Cabriolet">Cabriolet</option>
+																																											<option value="SUV">SUV</option>
+																																											<option value="Pickup truck">Pickup truck</option>
+																																											<option value="Van">Van</option>
 																																																				</select>
 										</span>
                                                     </td>
-                                                    <td style="position:relative; left: 150%;"><b>Number of doors</b><br><img src="images/px.gif" width="1" height="3"><br>
-                                                        <select style="width:150px;" name="doorId" id="doorId">
-                                                            <option value="0">- All -</option>
-                                                            <option value="1">2/3</option>
-                                                            <option value="2">4/5</option>
+                                                    <td style="position:relative; left: 150%;"><b>Number of doors</b><br><br>
+                                                        <select style="width:150px;" name="doorId" id="doorId" th:field="*{numberofdoors}">
+                                                            <option value="All">- All -</option>
+                                                            <option value="2/3">2/3</option>
+                                                            <option value="4/5">4/5</option>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -167,7 +167,7 @@
                                                 </tr>
                                                 <tr id="brandTR" class="makeandmodelcolumn" >
                                                     <td><b>Make</b><br><img src="images/px.gif" width="1" height="3"><br>
-                                                        <select style="width:150px;" name="brandId" id="BrandId" onchange="$('#model_panel').load('?ajax=multimodel&amp;brandId='+this.options[this.selectedIndex].value);$('#modelId option:selected').text('- Всички -');$('#model_label').text('Модел');">
+                                                        <select style="width:150px;" name="brandId" id="BrandId" onchange="$('#model_panel').load('?ajax=multimodel&amp;brandId='+this.options[this.selectedIndex].value);$('#modelId option:selected').text('- All -');$('#model_label').text('Model');">
                                                             <option value="0">- Mercedes -</option>
 <!--                                                            <optgroup label="A">										<option value="1">Acura</option>-->
 <!--                                                                <option value="2">Aixam</option>-->
@@ -278,76 +278,102 @@
                                                             </tr>
                                                             <tr>
                                                                 <td style="padding-top: 4px;height:19px;">
-                                                                    <select name="modelId" id="modelId" style="width:150px;z-index: 1;" onfocus="ShowModelPanel();">
-                                                                        <option value="0" selected="">- Всички -</option>
+                                                                    <select name="modelId" id="modelId" style="width:150px;z-index: 1;" th:field="*{model}">
+                                                                        <option value="0" selected="">- All -</option>
+                                                                        <option value="A Class"> A Class</option>
+                                                                        <option value="B Class"> B Class</option>
+                                                                        <option value="C Class"> C Class</option>
+                                                                        <option value="E Class"> E Class</option>
+                                                                        <option value="S Class"> S Class</option>
+                                                                        <option value="CL Class"> CL Class</option>
+                                                                        <option value="CLS Class"> CLS Class</option>
+                                                                        <option value="SL Class"> SL Class</option>
+                                                                        <option value="R Class"> R Class</option>
+                                                                        <option value="X Class"> X Class</option>
+                                                                        <option value="CLA Class"> CLA Class</option>
+                                                                        <option value="GLK Class"> GLK Class</option>
+                                                                        <option value="GL Class"> GL Class</option>
+                                                                        <option value="GLS Class"> GLS Class</option>
+                                                                        <optgroup label=" -Classic- ">
+                                                                        <option value="W 123">W 123</option>
+                                                                        <option value="W 124">W 124</option>
+                                                                        <option value="W 140">W 140</option>
+                                                                        </optgroup>
                                                                     </select>
 
                                                                     <div class="model_panel" id="model_panel" style="margin-top: -2px; display: none;">			<div></div>
                                                                         <ul style="padding-left: 10px;max-height: 350px;overflow-y: scroll;height: auto;" id="models_list">
-                                                                            <li style="list-style: none;"><input type="checkbox" name="models[]" class="model" value="" data-label="- Всички -">- All -</li>
+                                                                            <li style="list-style: none;"><input type="checkbox" name="models[]" class="model" value="" data-label="- All -">- All -</li>
                                                                         </ul>
                                                                         <p style="text-align: center;">
                                                                             <a href="javascript:;" onclick="CloseModelPanel();" class="mainlink">Close</a>
                                                                         </p>
-                                                                        <script>
-                                                                            $( document ).ready(function() {
-                                                                                $('.modelgroup').change(function(){
-                                                                                    var checks = $(this).attr('data-group').split(",");
-
-                                                                                    if ($(this).is(':checked')) {
-                                                                                        for(z=0; z<checks.length; z++) {
-                                                                                            $('input:checkbox[value="' + checks[z] + '"]').prop('checked', true);
-                                                                                        }
-
-                                                                                    } else {
-                                                                                        for(z=0; z<checks.length; z++) {
-                                                                                            $('input:checkbox[value="' + checks[z] + '"]').prop('checked', false);
-                                                                                        }
-                                                                                    }
-                                                                                    CountModelsSelected();
-                                                                                });
-
-
-
-
-                                                                                $('.model').change(function(){
-
-                                                                                    if (!$(this).is(':checked')) {
-                                                                                        var unchecked_field = $(this).val();
-                                                                                        //console.log("unchecked_field "+unchecked_field);
-                                                                                        $('input.modelgroup:checkbox:checked').each(function () {
-                                                                                            var children =  $(this).attr('data-group').split(",");
-                                                                                            for(var i in children) {
-                                                                                                if(children[i] == unchecked_field) {
-                                                                                                    $('input:checkbox[value="' + $(this).val() + '"]').prop('checked', false);
-                                                                                                }
-                                                                                            }
-                                                                                        });
-
-                                                                                    }
-
-                                                                                    CountModelsSelected();
-
-                                                                                });
-
-
-                                                                                $('input.modelgroup:checkbox:checked').each(function () {
-                                                                                    var checks = $(this).attr('data-group').split(",");
-                                                                                    for(var i in checks) {
-
-
-                                                                                        $('input:checkbox[value="' + checks[i] + '"]').prop('checked', true);
-                                                                                    }
-
-                                                                                });
-
-                                                                            });
 
 
 
 
 
-                                                                        </script></div>
+
+<!--                                                                        <script>-->
+<!--                                                                            $( document ).ready(function() {-->
+<!--                                                                                $('.modelgroup').change(function(){-->
+<!--                                                                                    var checks = $(this).attr('data-group').split(",");-->
+
+<!--                                                                                    if ($(this).is(':checked')) {-->
+<!--                                                                                        for(z=0; z<checks.length; z++) {-->
+<!--                                                                                            $('input:checkbox[value="' + checks[z] + '"]').prop('checked', true);-->
+<!--                                                                                        }-->
+
+<!--                                                                                    } else {-->
+<!--                                                                                        for(z=0; z<checks.length; z++) {-->
+<!--                                                                                            $('input:checkbox[value="' + checks[z] + '"]').prop('checked', false);-->
+<!--                                                                                        }-->
+<!--                                                                                    }-->
+<!--                                                                                    CountModelsSelected();-->
+<!--                                                                                });-->
+
+
+
+
+<!--                                                                                $('.model').change(function(){-->
+
+<!--                                                                                    if (!$(this).is(':checked')) {-->
+<!--                                                                                        var unchecked_field = $(this).val();-->
+<!--                                                                                        //console.log("unchecked_field "+unchecked_field);-->
+<!--                                                                                        $('input.modelgroup:checkbox:checked').each(function () {-->
+<!--                                                                                            var children =  $(this).attr('data-group').split(",");-->
+<!--                                                                                            for(var i in children) {-->
+<!--                                                                                                if(children[i] == unchecked_field) {-->
+<!--                                                                                                    $('input:checkbox[value="' + $(this).val() + '"]').prop('checked', false);-->
+<!--                                                                                                }-->
+<!--                                                                                            }-->
+<!--                                                                                        });-->
+
+<!--                                                                                    }-->
+
+<!--                                                                                    CountModelsSelected();-->
+
+<!--                                                                                });-->
+
+
+<!--                                                                                $('input.modelgroup:checkbox:checked').each(function () {-->
+<!--                                                                                    var checks = $(this).attr('data-group').split(",");-->
+<!--                                                                                    for(var i in checks) {-->
+
+
+<!--                                                                                        $('input:checkbox[value="' + checks[i] + '"]').prop('checked', true);-->
+<!--                                                                                    }-->
+
+<!--                                                                                });-->
+
+<!--                                                                            });-->
+
+
+
+
+
+<!--                                                                        </script>-->
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                             </tbody></table>
@@ -357,22 +383,22 @@
                                                     <td class="line-bottom-border" colspan="2"><img src="images/px.gif" width="1" height="1"></td>
                                                 </tr>
 
-                                                <tr class="fuelandtransmissiontype">
-                                                    <td><b>Fuel type</b><br><img src="images/px.gif" width="1" height="3"><br>
-                                                        <select style="width:150px;" name="fuelId" id="fuelId">
-                                                            <option value="0">- All -</option>
-                                                            <option value="1">Petrol</option>
-                                                            <option value="2">Diesel</option>
-                                                            <option value="3">LPG/Petrol</option>
-                                                            <option value="4">Hybrid</option>
-                                                            <option value="5">Electric</option>
+                                                <tr class="fuelandtransmissiontype" >
+                                                    <td ><b>Fuel type</b><br><img src="images/px.gif" width="1" height="3"><br>
+                                                        <select style="width:150px;" name="fuelId" id="fuelId" th:field="*{fueltype}"  >
+                                                            <option value="All">- All -</option>
+                                                            <option value="Petrol">Petrol</option>
+                                                            <option value="Diesel">Diesel</option>
+<!--                                                            <option value="LPG/Petrol">LPG/Petrol</option>-->
+                                                            <option value="Hybrid">Hybrid</option>
+                                                            <option value="Electric">Electric</option>
                                                         </select>
                                                     </td>
-                                                    <td style="    position: relative; left: 150%;"><b>Transmission type</b><br><img src="images/px.gif" width="1" height="3"><br>
-                                                        <select style="width:150px;" name="gearId" id="gearId">
-                                                            <option value="0">- All -</option>
-                                                            <option value="1">Manual</option>
-                                                            <option value="2">Automatic</option>
+                                                    <td style="position: relative; left: 150%;" ><b>Transmission type</b><br><img src="images/px.gif" width="1" height="3"><br>
+                                                        <select style="width:150px;" name="gearId" id="gearId" th:field="*{transmissiontype}">
+                                                            <option value="All">- All -</option>
+                                                            <option value="Manual">Manual</option>
+                                                            <option value="Automatic">Automatic</option>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -384,7 +410,7 @@
                                                     <td colspan="2"    style=" position: relative;
                                                         left: 200%;">
                                                         <strong>Year of production</strong><br><img src="images/px.gif" width="1" height="3"><br>
-                                                        from <select name="yearFrom" id="yearFrom" class="textfield">
+                                                        from <select name="yearFrom" id="yearFrom" class="textfield" th:field="*{productiondatefrom}">
                                                         <option value=""></option>
                                                         <option value="2019">2019  г.</option>
                                                         <option value="2018">2018  г.</option>
@@ -437,7 +463,7 @@
                                                         <option value="1971">1971  г.</option>
                                                     </select>
                                                         &nbsp;
-                                                        to <select name="yearTo" id="yearTo" class="textfield">
+                                                        to <select name="yearTo" id="yearTo" class="textfield" th:field="*{productiondateto}">
                                                         <option value=""></option>
                                                         <option value="2019">2019 г.</option>
                                                         <option value="2018">2018 г.</option>
@@ -496,11 +522,12 @@
                                                 </tr>
                                                 <tr class="pricecolumn">
                                                     <td colspan="2" style="position: relative; bottom: 95px;">
-                                                        <b>Price</b>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="manual_price" value="1" onclick="if(this.checked){$('#rangepricetable').hide();$('#manualpricetable').show();} else { $('#rangepricetable').show();$('#manualpricetable').hide(); }">детайлна цена<br><img src="images/px.gif" width="1" height="3"><br>
+                                                <b>Price</b>
+                                                        <!--        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="manual_price" value="1" onclick="if(this.checked){$('#rangepricetable').hide();$('#manualpricetable').show();} else { $('#rangepricetable').show();$('#manualpricetable').hide(); }">детайлна цена<br><img src="images/px.gif" width="1" height="3"><br>-->
                                                         <table cellpadding="0" cellspacing="0" id="rangepricetable">
                                                             <tbody><tr>
                                                                 <td>
-                                                                    <select name="priceFrom" id="PriceFrom" onchange="$('#priceToContainer').load('?ajax=generatePrice&amp;start='+ this.options[this.selectedIndex].value);" class="textfield">
+                                                                    <select th:field="*{pricefrom}" name="priceFrom" id="PriceFrom" class="textfield">
                                                                         <option value=""></option>
                                                                         <option value="1000">from 1000</option>
                                                                         <option value="2000">from 2000</option>
@@ -549,7 +576,7 @@
                                                                 </td>
                                                                 <td>
                                                                     <div id="priceToContainer">
-                                                                        <select name="priceTo" id="PriceTo" class="textfield">
+                                                                        <select name="priceTo" id="PriceTo" class="textfield" th:field="*{priceto}">
                                                                             <option value=""></option>
                                                                             <option value="1000">to 1000</option>
                                                                             <option value="2000">to 2000</option>
@@ -639,20 +666,20 @@
 
                                                             <tbody>
                                                             <tr class="statecolumn">
-                                                                <td colspan="2" ><b>State</b><br><img src="images/px.gif" width="1" height="3"><br>
-                                                                    <select style="width:150px;" name="regionId" id="regionId" onchange="$('#city').load('?ajax=registration-city&amp;regionId='+parseInt(document.getElementById('regionId').value));return false;">
-                                                                        <option value="0">- All States -</option>
-                                                                        <option value="1">CA</option>
-                                                                        <option value="2">BH</option>
-                                                                        <option value="3">AL</option>
-                                                                        <option value="4">CO</option>
-                                                                        <option value="5">IL</option>
-                                                                        <option value="6">IN</option>
-                                                                        <option value="7">MI</option>
-                                                                        <option value="8">MO</option>
-                                                                        <option value="9">NE</option>
-                                                                        <option value="10">NJ</option>
-                                                                        <option value="11">NY</option>
+                                                                <td colspan="2" ><b>State</b><br><img src="images/px.gif" width="1" height="3" ><br>
+                                                                    <select style="width:150px;" name="regionId" id="regionId" th:field="*{location}">
+                                                                        <option value="All">- All States -</option>
+                                                                        <option value="CA">CA</option>
+                                                                        <option value="BH">BH</option>
+                                                                        <option value="AL">AL</option>
+                                                                        <option value="CO">CO</option>
+                                                                        <option value="IL">IL</option>
+                                                                        <option value="IN">IN</option>
+                                                                        <option value="MI">MI</option>
+                                                                        <option value="MO">MO</option>
+                                                                        <option value="NE">NE</option>
+                                                                        <option value="NJ">NJ</option>
+                                                                        <option value="NY">NY</option>
 <!--                                                                        <option value="12">Монтана</option>-->
 <!--                                                                        <option value="13">Пазарджик</option>-->
 <!--                                                                        <option value="14">Перник</option>-->
@@ -675,24 +702,28 @@
 
                                                             </tr>
 
-                                                            <tr>
-                                                                <td colspan="2">
-                                                                    <b>Населено място</b><br><img src="images/px.gif" width="1" height="3"><br>
-                                                                    <span id="city"><select name="cityId" id="cityId" style="width:150px;" disabled="">
-</select>
-</span></td>
-                                                            </tr>
+<!--                                                            <tr>-->
+<!--                                                                <td colspan="2">-->
+<!--                                                                    <b>Населено място</b><br><img src="images/px.gif" width="1" height="3"><br>-->
+<!--                                                                    <span id="city"><select name="cityId" id="cityId" style="width:150px;" disabled="">-->
+<!--</select>-->
+<!--</span>-->
+<!--                                                                </td>-->
+<!--                                                            </tr>-->
 
                                                             <tr>
                                                                 <td class="line-bottom-border" colspan="2"><img src="images/px.gif" width="1" height="1"></td>
                                                             </tr>
 
                                                             <tr class="conditioncolumn">
-                                                                <td colspan="2" nowrap=""> <b>Condition</b><br><img src="images/px.gif" width="1" height="3"><br>
-                                                                    <input type="checkbox" name="offersFor4" id="offersFor4" checked="" value="1">New<br>
-                                                                    <input type="checkbox" name="offersFor1" id="offersFor1" checked="" value="1">Used<br>
-                                                                    <input type="checkbox" name="offersFor2" id="offersFor2" value="1">Totaled/Crashed<br>
-                                                                    <input type="checkbox" name="offersFor3" id="offersFor3" value="1">For Parts
+                                                                <td colspan="2" nowrap="" > <b>Condition</b>
+
+                                                                    <br><br>
+<!--                                                                    checked=""-->
+                                                                    <input type="checkbox" name="offersFor4" id="offersFor4" th:field="*{condition}" checked="checked" value="New">New<br>
+                                                                    <input type="checkbox" name="offersFor1" id="offersFor1" th:field="*{condition}" value="Used">Used<br>
+<!--                                                                    <input type="checkbox" name="offersFor2" id="offersFor2" value="1">Totaled/Crashed<br>-->
+<!--                                                                    <input type="checkbox" name="offersFor3" id="offersFor3" value="1">For Parts-->
                                                                 </td>
                                                             </tr>
 

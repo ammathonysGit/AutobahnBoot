@@ -3,9 +3,13 @@ package com.scalefocus.tracker.tracker.model.bindingmodels;
 import lombok.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.joda.time.DateTime;
+
+import java.util.Date;
+
 @Getter
 @Setter
-public class CarBindingModel  {
+public class  CarBindingModel  {
 
     private Integer id;
     private String brand;
@@ -13,27 +17,31 @@ public class CarBindingModel  {
     private String bodytype;
     private String color;
     private String transmissiontype;
-    private String productiondate;
+    private String productiondatefrom;
+    private String productiondateto;
     private String fueltype;
-    private Double price;
+    private Double pricefrom;
+    private Double priceto;
     private Integer horsepower;
     private Integer mileage;
     private String location;
+    private String condition;
+    private String numberofdoors;
 
-    public Integer getMileage() {
-        return mileage;
+    public String getProductiondatefrom() {
+        return productiondatefrom;
     }
 
-    public void setMileage(Integer mileage) {
-        this.mileage = mileage;
+    public void setProductiondatefrom(String productiondatefrom) {
+        this.productiondatefrom = productiondatefrom;
     }
 
-    public String getLocation() {
-        return location;
+    public String getProductiondateto() {
+        return productiondateto;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setProductiondateto(String productiondateto) {
+        this.productiondateto = productiondateto;
     }
 
     public Integer getId() {
@@ -84,14 +92,6 @@ public class CarBindingModel  {
         this.transmissiontype = transmissiontype;
     }
 
-    public String getProductiondate() {
-        return productiondate;
-    }
-
-    public void setProductiondate(String productiondate) {
-        this.productiondate = productiondate;
-    }
-
     public String getFueltype() {
         return fueltype;
     }
@@ -100,12 +100,20 @@ public class CarBindingModel  {
         this.fueltype = fueltype;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getPricefrom() {
+        return pricefrom;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setPricefrom(Double pricefrom) {
+        this.pricefrom = pricefrom;
+    }
+
+    public Double getPriceto() {
+        return priceto;
+    }
+
+    public void setPriceto(Double priceto) {
+        this.priceto = priceto;
     }
 
     public Integer getHorsepower() {
@@ -116,4 +124,35 @@ public class CarBindingModel  {
         this.horsepower = horsepower;
     }
 
+    public Integer getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(Integer mileage) {
+        this.mileage = mileage;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public String getNumberofdoors() {
+        return numberofdoors;
+    }
+
+    public void setNumberofdoors(String numberofdoors) {
+        this.numberofdoors = numberofdoors;
+    }
 }

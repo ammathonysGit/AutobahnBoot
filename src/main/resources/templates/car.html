@@ -99,7 +99,7 @@
                                 <td valign="top">
                                     <table cellspacing="5" cellpadding="0" border="0">
                                         <tbody><tr>
-                                            <span style="font-size:20px;"><strong style="color:black;" th:text="' Production date: ' +  ${car.productiondate}"> </strong></span>
+                                            <span style="font-size:20px;"><strong style="color:black;" th:text="' Production date: ' +  ${#dates.format(car.productiondate, 'dd-MMM-yyyy')}"> </strong></span>
                                         </tr>
                                         <br>
                                         <tr>

@@ -6,7 +6,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2019-04-16T13:12:09+0300",
+    date = "2019-04-17T17:58:02+0300",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 1.8.0_201 (Oracle Corporation)"
 )
 public class CarMapperImpl implements CarMapper {
@@ -19,18 +19,16 @@ public class CarMapperImpl implements CarMapper {
 
         CarBindingModel carBindingModel = new CarBindingModel();
 
-        carBindingModel.setMileage( car.getMileage() );
-        carBindingModel.setLocation( car.getLocation() );
         carBindingModel.setId( car.getId() );
         carBindingModel.setBrand( car.getBrand() );
         carBindingModel.setModel( car.getModel() );
         carBindingModel.setBodytype( car.getBodytype() );
         carBindingModel.setColor( car.getColor() );
         carBindingModel.setTransmissiontype( car.getTransmissiontype() );
-        carBindingModel.setProductiondate( car.getProductiondate() );
         carBindingModel.setFueltype( car.getFueltype() );
-        carBindingModel.setPrice( car.getPrice() );
         carBindingModel.setHorsepower( car.getHorsepower() );
+        carBindingModel.setMileage( car.getMileage() );
+        carBindingModel.setLocation( car.getLocation() );
 
         return carBindingModel;
     }
@@ -51,9 +49,7 @@ public class CarMapperImpl implements CarMapper {
         car.setBodytype( carBindingModel.getBodytype() );
         car.setColor( carBindingModel.getColor() );
         car.setTransmissiontype( carBindingModel.getTransmissiontype() );
-        car.setProductiondate( carBindingModel.getProductiondate() );
         car.setFueltype( carBindingModel.getFueltype() );
-        car.setPrice( carBindingModel.getPrice() );
         car.setHorsepower( carBindingModel.getHorsepower() );
 
         return car;

@@ -11,6 +11,8 @@ public interface CarService {
 
     Car saveCar(CarBindingModel carBindingModel);
 
+    Car saveCar(Car car);
+
     Car updateCar(CarBindingModel carBindingModel);
 
     Car getCarById(Integer id);
@@ -32,5 +34,7 @@ public interface CarService {
     List<Car> findCarsByPrice(String price);
 
     List<Car> findCarsByFuelType(String fueltype);
+
+    List<Car> findCarsBySearchFormCriteria(CarBindingModel carBindingModel);
 
 }

@@ -128,7 +128,7 @@
                         <br>
                         <span style="font-size:13px;"><strong style="color: #cccccc" th:text="' Location: '+ ${car.location}"> </strong></span>
                         <br>
-                        <span style="font-size:13px;"><strong style="color: #cccccc" th:text="' Production date: ' +  ${car.productiondate}"> </strong></span>
+                        <span style="font-size:13px;"><strong style="color: #cccccc" th:text="' Production date: ' +  ${#dates.format(car.productiondate, 'dd-MMM-yyyy')}"> </strong></span>
                         <br>
                         <span style="font-size:13px;"><strong style="color: #cccccc" th:text="' Fuel: ' +  ${car.fueltype}"> </strong></span>
                         <br>
@@ -163,12 +163,12 @@
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="tableFirstTwo">
                     <tbody><tr>
                         <td width="180px" valign="top" th:href="${'/car/' + car.id}" >
-                            <a th:href="${'/car/' + car.id}">
+                            <a th:href="${'cars/car/' + car.id}">
                                 <img src="./image/carousel-home-page-images/140.jpg"style="height: 30%; width: 110%">
                             </a>
                         </td>
                         <td valign="top" style="color:#333; font-size:13px; width: 280px; left: 7% ;position: relative;">
-                            <a th:href="${'/car/' + car.id}"> <strong style="color: #cccccc; font-size:18px;" th:text="' Model: ' + ${car.model}"> </strong> </a>
+                            <a th:href="${'cars/car/' + car.id}"> <strong style="color: #cccccc; font-size:18px;" th:text="' Model: ' + ${car.model}"> </strong> </a>
                             <br>
                             <span style="font-size:13px;"><strong style="color: #cccccc" th:text="' Power: ' + ${car.horsepower} + '(Hp)'"> </strong></span>
                             <br>

@@ -5,9 +5,12 @@ import com.scalefocus.tracker.tracker.exceptions.NoCarsFoundException;
 import com.scalefocus.tracker.tracker.mappers.CarMapper;
 import com.scalefocus.tracker.tracker.model.bindingmodels.CarBindingModel;
 import com.scalefocus.tracker.tracker.repository.CarsRepository;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,6 +44,11 @@ public class CarsServiceImpl implements CarService {
        carsRepository.saveAndFlush(car);
 
        return car;
+    }
+
+    @Override
+    public Car saveCar(Car car) {
+        return carsRepository.saveAndFlush(car);
     }
 
     @Override
@@ -191,4 +199,26 @@ public class CarsServiceImpl implements CarService {
         return carList;
     }
 
+    @Override
+    public List<Car> findCarsBySearchFormCriteria(CarBindingModel carBindingModel) {
+        Integer productionDateFrom = Integer.parseInt(carBindingModel.getProductiondatefrom());
+        Integer productionDateTo = Integer.parseInt(carBindingModel.getProductiondateto());
+
+        DateTime productionDateTimeFrom = new DateTime().withYear(productionDateFrom).withMonthOfYear(1).withDayOfMonth(1);
+        DateTime productionDateTimeTo = new DateTime().withYear(productionDateTo).withMonthOfYear(1).withDayOfMonth(1);
+
+
+        List<Car> carList = carsRepository.findByBodytypeAndFueltypeAndTransmissiontypeAndLocationAndModelContainsAndPriceBetweenAndProductiondateBetween(carBindingModel.getBodytype(),
+                carBindingModel.getFueltype(), carBindingModel.getTransmissiontype(), carBindingModel.getLocation(), carBindingModel.getModel(), carBindingModel.getPricefrom(), carBindingModel.getPriceto(),
+                productionDateTimeFrom, productionDateTimeTo);
+
+
+
+        return  carList;
+    }
+
 }
+
+
+
+
