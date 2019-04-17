@@ -39,6 +39,7 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carCKlasse.setHorsepower(204);
         carCKlasse.setLocation("CA");
         carCKlasse.setMileage(300);
+        carCKlasse.setImageUrl("https://images.betweentheaxles.net/mercedes_amg_c63_coupe_c205_2015/mercedes-amg-c63-s-coupe-c205-100_sfce6.jpg");
 
         carService.saveCar(carCKlasse);
 
@@ -54,7 +55,7 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carEKlasse.setHorsepower(610);
         carEKlasse.setLocation("CA");
         carEKlasse.setMileage(50);
-
+        carEKlasse.setImageUrl("https://images.betweentheaxles.net/mercedes_amg_c63_coupe_c205_2015/mercedes-amg-c63-s-coupe-c205-100_sfce6.jpg");
         carService.saveCar(carEKlasse);
 
         Car carE2Klasse = new Car();
@@ -69,6 +70,7 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carE2Klasse.setHorsepower(610);
         carE2Klasse.setLocation("CA");
         carE2Klasse.setMileage(50);
+        carE2Klasse.setImageUrl("https://images.betweentheaxles.net/mercedes_amg_c63_coupe_c205_2015/mercedes-amg-c63-s-coupe-c205-100_sfce6.jpg");
 
         carService.saveCar(carE2Klasse);
 
@@ -84,6 +86,7 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carE3Klasse.setHorsepower(610);
         carE3Klasse.setLocation("CA");
         carE3Klasse.setMileage(50);
+        carE3Klasse.setImageUrl("https://images.betweentheaxles.net/mercedes_amg_c63_coupe_c205_2015/mercedes-amg-c63-s-coupe-c205-100_sfce6.jpg");
 
         carService.saveCar(carE3Klasse);
 
@@ -99,6 +102,7 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carGKlasse.setHorsepower(800);
         carGKlasse.setMileage(100);
         carGKlasse.setLocation("LA");
+        carGKlasse.setImageUrl("https://images.betweentheaxles.net/mercedes_amg_c63_coupe_c205_2015/mercedes-amg-c63-s-coupe-c205-100_sfce6.jpg");
 
         carService.saveCar(carGKlasse);
 
@@ -114,7 +118,7 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carSKlasse.setHorsepower(510);
         carSKlasse.setLocation("CA");
         carSKlasse.setMileage(20);
-
+        carSKlasse.setImageUrl("https://images.betweentheaxles.net/mercedes_amg_c63_coupe_c205_2015/mercedes-amg-c63-s-coupe-c205-100_sfce6.jpg");
         carService.saveCar(carSKlasse);
 
         Car carCLAKlasse = new Car();
@@ -129,6 +133,7 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carCLAKlasse.setHorsepower(320);
         carCLAKlasse.setLocation("CA");
         carCLAKlasse.setMileage(20);
+        carCLAKlasse.setImageUrl("https://images.betweentheaxles.net/mercedes_amg_c63_coupe_c205_2015/mercedes-amg-c63-s-coupe-c205-100_sfce6.jpg");
 
         carService.saveCar(carCLAKlasse);
 
@@ -144,6 +149,7 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carGLKKlasse.setHorsepower(350);
         carGLKKlasse.setLocation("CA");
         carGLKKlasse.setMileage(157);
+        carGLKKlasse.setImageUrl("https://images.betweentheaxles.net/mercedes_amg_c63_coupe_c205_2015/mercedes-amg-c63-s-coupe-c205-100_sfce6.jpg");
 
         carService.saveCar(carGLKKlasse);
 
@@ -159,6 +165,7 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carBKlasse.setHorsepower(300);
         carBKlasse.setLocation("CA");
         carBKlasse.setMileage(200);
+        carBKlasse.setImageUrl("https://images.betweentheaxles.net/mercedes_amg_c63_coupe_c205_2015/mercedes-amg-c63-s-coupe-c205-100_sfce6.jpg");
 
         carService.saveCar(carBKlasse);
 
@@ -174,6 +181,7 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         carXKlasse.setHorsepower(350);
         carXKlasse.setLocation("CA");
         carXKlasse.setMileage(200);
+        carXKlasse.setImageUrl("https://images.betweentheaxles.net/mercedes_amg_c63_coupe_c205_2015/mercedes-amg-c63-s-coupe-c205-100_sfce6.jpg");
 
         carService.saveCar(carXKlasse);
     }

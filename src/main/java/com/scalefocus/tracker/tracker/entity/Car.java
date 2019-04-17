@@ -40,6 +40,16 @@ public class Car {
     private Integer horsepower;
     private Integer mileage;
     private String location;
+    @Column(length = 1000)
+    private String imageurl;
+
+    public String getImageUrl() {
+        return imageurl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageurl = imageUrl;
+    }
 
     public DateTime getProductiondate() {
         return productiondate;
