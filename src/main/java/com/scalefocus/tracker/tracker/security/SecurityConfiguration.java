@@ -27,6 +27,21 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers(HomeConstant.INDEX_URL, HomeConstant.HOME_URL).permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage(LoginConstant.LOGIN_URL)
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
+    }
+
+//
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
 //        http.authorizeRequests()
@@ -40,6 +55,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .logout()
 //                .permitAll();
 //    }
+
+
+
 
 //    @Autowired
 //    private UserDetailsService userDetailsService;
