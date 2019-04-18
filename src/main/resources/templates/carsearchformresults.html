@@ -82,7 +82,7 @@
                         <td width="180px" valign="top" th:href="${'/car/' + car.id}" >
 
                             <a th:href="${'results/car/' + car.id}">
-                                <img src="/image/carousel-home-page-images/140.jpg"style="height: 45%; width: 110%">
+                                <img th:src="'/image/carousel-home-page-images/' + ${car.imageUrl}" style="height: 320px; max-width: 100%;  border-radius: 8px;   background-size: 100% 100%;">
                             </a>
                         </td>
 

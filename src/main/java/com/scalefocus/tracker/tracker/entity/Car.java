@@ -40,7 +40,6 @@ public class Car {
     private Integer horsepower;
     private Integer mileage;
     private String location;
-    @Column(length = 1000)
     private String imageurl;
 
     public String getImageUrl() {

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+
+
+    <link rel="stylesheet" th:href="@{/css/singlecarpage.css}" type="text/css">
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <link href="/css/spring-core.css"
+          th:href="@{/css/spring-core.css}" rel="stylesheet" media="screen"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+    <title>Rim</title>
+</head>
+<body id="page" style="background: #cccccc; height: 965px">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" th:href="${'/'}"><h1 id="title"><span>Autobahn</span></h1></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav" style="position: relative;">
+            <li class="nav-item" >
+                <a class="nav-link" th:href="${'/'}" >Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" href="http://benz.bg/">Tuning</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" th:href="${'/contactus'}">Contact Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="${'/rim/'}">Rims</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="${'/parts'}">Parts</a>
+            </li>
+            <li class="nav-item dropdown" >
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cars
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="font-size: 15px; background-color: #ccc">
+                    <a class="dropdown-item"  th:href="${'/cars'}">Check out our vehicles</a>
+                    <a class="dropdown-item" th:href="${'/searchcarsform'}">Search for a vehicle</a>
+                    <a class="dropdown-item" th:href="${'/about'}">About the cars we sell</a>
+                </div>
+            </li>
+            <li id="signuploginactions" class="navbar-item">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a th:href="${'/registrationform'}">
+                        <button type="button" class="btn btn-secondary" >Sign Up</button>
+                    </a>
+                    <a th:href="${'/login'}">
+                        <button type="button" class="btn btn-secondary" >Log In</button>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<table class="tableSingleRimPage" border="0" cellpadding="0" cellspacing="0" style="padding-top:5px;">
+
+    <tbody><tr>
+        <td valign="top" width="510">
+            <table width="510" border="0" cellspacing="0" cellpadding="5" class="ver13black">
+                <tbody><tr>
+                    <td valign="bottom" class="ver30black line-bottom-border" style="padding-top:10px; font-size: 45px; color: black; padding-left: 31%" th:text="'Brand: ' + ${rim.brand}"><strong> </strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tbody><tr>
+                                <span class="ver20black" ><strong th:text="'$' + ${rim.price}" style=" bottom: 110px;   font-size: 40px; left: 140%; position: relative; color: black"></strong></span><br>
+                                </td>
+                            </tr>
+                            </tbody></table>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td style="padding-top:5px;padding-left:80px;">
+                        <table cellspacing="0" cellpadding="0" border="0" align="left" style="width: 100%;">
+                            <tbody><tr>
+                                <td valign="top" style="width: 50%">
+                                    <table cellspacing="5" cellpadding="0" border="0">
+                                        <tbody>
+                                        <br>
+                                        <tr>
+                                            <span style="font-size:30px;"><strong style="color:black;" th:text="' Size: ' + ${rim.size} + ' inch'"> </strong></span>
+                                        </tr>
+                                        <br>
+                                        <br>
+                                        <tr>
+                                            <span style="font-size:30px;"><strong style="color:black;" th:text="' Colour: ' +  ${rim.colour}"> </strong></span>
+                                        </tr>
+                                        <br>
+                                        <br>
+
+                                        </tbody></table>
+                                </td>
+                                <td valign="top" style="padding-left:50px; position: relative; left: 200%; bottom: 150px">
+                                    <table cellspacing="5" cellpadding="0" border="0" style="width: 100%; position: relative; left: 20%;">
+                                        <tbody>
+                                        <tr>
+                                            <a >
+                                                <img th:src="'/image/rims/' + ${rim.imageurl}" style="height: 500px; width: 250%;  border-radius: 8px;   background-size: 100% 100%;">
+                                            </a>
+                                        </tr>
+                                        <br>
+
+                                        </tbody></table>
+                                </td>
+
+                            </tr><tr>
+                            </tr></tbody></table></td>
+                </tr>
+</tbody>
+
+            </table>
+
+
+
+</td>
+    </tr>
+    </tbody>
+</table>
+
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%"  style="    position: relative; bottom: 300px">
+    <tbody><tr>
+        <td style="font-size: 3em;color:black;padding-bottom:3px; padding-left: 5px;" colspan="2" ><b>Features</b></td>
+    </tr>
+    <tr>
+        <td class="line-bottom-border" colspan="2"><img alt="" src="images/px.gif" height="1"></td>
+    </tr>
+    <tr>
+
+        <td style="padding-top:5px;padding-left:5px; font-size: 25px; color: black;">
+           <span style="padding-top:5px;padding-left:5px; font-size: 25px; color: black;">Made using low pressure casting technology</span>
+            <br>
+            <span style="padding-top:5px;padding-left:5px; font-size: 25px; color: black;">Offered in the most common dimensions to fit different vehicles</span>
+
+            <br>
+            <span style="padding-top:5px;padding-left:5px; font-size: 25px; color: black;">1-piece cast construction</span>
+
+            <br>
+            <span style="padding-top:5px;padding-left:5px; font-size: 25px; color: black;">Compliant with the JWL and VIA industry standard</span>
+
+            <br>
+            <span style="padding-top:5px;padding-left:5px; font-size: 25px; color: black;">1 or 3-year warranty on the finish</span>
+
+            <br>
+            <span style="padding-top:5px;padding-left:5px; font-size: 25px; color: black;">Lifetime warranty on the structure of the wheel</span>
+
+            <br>
+           								</td>
+    </tr>
+    </tbody></table>
+
+
+
+</body>
+
+
+</html>

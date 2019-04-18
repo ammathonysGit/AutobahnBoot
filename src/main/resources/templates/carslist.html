@@ -86,7 +86,7 @@
                         <td width="180px" valign="top" th:href="${'/car/' + car.id}" >
 
                             <a th:href="${'cars/car/' + car.id}">
-                                <img src="./image/carousel-home-page-images/140.jpg"style="height: 45%; width: 110%">
+                                <img th:src="'./image/carousel-home-page-images/' + ${car.imageUrl}" style="height: 345px; max-width: 100%;  border-radius: 8px;   background-size: 100% 100%;">
                             </a>
                         </td>
 
@@ -99,7 +99,7 @@
                             <br>
                             <span style="font-size:20px;"><strong style="color: #cccccc" th:text="' Location: '+ ${car.location}"> </strong></span>
                             <br>
-                            <span style="font-size:20px;"><strong style="color: #cccccc" th:text="' Production date: ' +  ${car.productiondate}"> </strong></span>
+                            <span style="font-size:20px;"><strong style="color: #cccccc" th:text="' Production date: ' +  ${#dates.format(car.productiondate, 'dd-MMM-yyyy')}"> </strong></span>
                             <br>
                             <span style="font-size:20px;"><strong style="color: #cccccc" th:text="' Fuel: ' +  ${car.fueltype}"> </strong></span>
                             <br>

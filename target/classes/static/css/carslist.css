@@ -75,6 +75,7 @@
     border-style:solid;
     border-color:#cccccc;
     padding: 1em;
+    border-radius: 8px;
 }
 
 .item {

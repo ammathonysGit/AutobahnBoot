@@ -390,15 +390,15 @@
             <div id="big_img" style="padding-top: 25px; width: 448px; height: 255px;" >
 
 
-                <div id="prev_i_img" style="position: absolute; margin-top: 106.5px; margin-left: 0px; width: 24px; height: 43px; z-index: 4;"><a href="javascript:prev_img();"><img src="images/prev_ico_s.gif" width="24" height="43" border="0" onmouseover="this.src='images/prev_ico_s_act.gif';" onmouseout="this.src='images/prev_ico_s.gif';"></a></div>
-                <div id="next_i_img" style="position: absolute; margin-top: 106.5px; margin-left: 424px; margin-right: 0px; width: 24px; height: 43px; z-index: 4;"><a href="javascript:next_img();"><img src="images/next_ico_s.gif" width="24" height="43" border="0" onmouseover="this.src='images/next_ico_s_act.gif';" onmouseout="this.src='images/next_ico_s.gif';"></a></div>
-                <div style="float:left;z-index:3;width:448px;text-align:center;"><a href="javascript:tb_show(null, 'https://g1.cars.bg/2019-02-03_2/27574277o.jpg','gallery');" id="img_cont"><img src="/image/carousel-home-page-images/140.jpg" style="height: 45%; width: 100%" sborder="0" onfocus="this.blur();"></a></div>
+                <div id="prev_i_img" style="position: absolute; margin-top: 106.5px; margin-left: 0px; width: 24px; height: 43px; z-index: 4;"><a href="javascript:prev_img();"><img src="/image/nextIconLeft.jpg" width="24" height="43" border="0" onmouseover="this.src='/image/nextIconLeft.jpg';" onmouseout="this.src='/image/nextIconLeft.jpg';"></a></div>
+                <div id="next_i_img" style="position: absolute; margin-top: 106.5px; margin-left: 424px; margin-right: 0px; width: 24px; height: 43px; z-index: 4;"><a href="javascript:next_img();"><img src="/image/nextIconRight.jpg" width="24" height="43" border="0" onmouseover="this.src='/image/nextIconRight.jpg';" onmouseout="this.src='/image/nextIconRight.jpg';"></a></div>
+                <div style="float:left;z-index:3;width:448px;text-align:center;"><a href="javascript:tb_show(null, 'https://g1.cars.bg/2019-02-03_2/27574277o.jpg','gallery');" id="img_cont"><img th:src="'/image/carousel-home-page-images/' + ${car.imageUrl}" style="height: 45%; width: 100%" sborder="0" onfocus="this.blur();"></a></div>
             </div>
             <table border="0" cellspacing="0" cellpadding="0" style="padding-top:5px;">
                 <tbody><tr>
                     <td align="left" valign="top"><div class="selImgDiv" id="smallimg_1">
                         <a href="./image/carousel-home-page-images/140.jpg" class="thickbox" rel="gallery"></a>
-                        <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g1.cars.bg/2019-02-03_2/27574277o.jpg','gallery');}else{load_img(1);}" onfocus="this.blur();"><img src="./image/carousel-home-page-images/140.jpg" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
+                        <a href="javascript:;" onclick="if(jQuery.browser.msie &amp;&amp; jQuery.browser.version < 7){tb_show(null, 'https://g1.cars.bg/2019-02-03_2/27574277o.jpg','gallery');}else{load_img(1);}" onfocus="this.blur();"><img th:src="'/image/carousel-home-page-images/' + ${car.imageUrl}" width="84" height="47" onfocus="this.blur();" border="0"></a></div></td>
                     <td width="2"><img width="2" height="1" src="images/px.gif"></td>
                     <td align="left" valign="top"><div class="nImgDiv" id="smallimg_2">
                         <a href="https://g4.cars.bg/2019-02-03_2/27574259o.jpg" class="thickbox" rel="gallery"></a>

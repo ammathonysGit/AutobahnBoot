@@ -54,6 +54,11 @@
     left: 7%;
 }
 
+#tableFirstThree {
+    position: relative;
+    left: 7%;
+}
+
 #titlesecondClassics {
     color: #cccccc;
     font-size: 30px;
