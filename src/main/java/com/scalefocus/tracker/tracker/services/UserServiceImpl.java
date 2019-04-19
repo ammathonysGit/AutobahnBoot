@@ -23,25 +23,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserByUserName(String username) {
-        List<User> listOfUsers = usersRepository.findAll();
-        Optional<User> userToReturn = null;
-
-        if (listOfUsers == null) {
-            throw new NoUsersFoundException("No Users Found", new Throwable().getCause());
-        }
-
-        for (User user: listOfUsers) {
-            if (user.getUsername().equals(username)) {
-                userToReturn = Optional.of(user);
-                break;
-            }
-        }
-
-        if (userToReturn == null) {
-            throw new NoSuchUserFoundException("No Such User Found", new Throwable().getCause());
-        }
-
-        return userToReturn.get();
+      return  usersRepository.findByUsername(username).get();
     }
 
     @Override
@@ -51,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) {
-
+        usersRepository.saveAndFlush(user);
     }
 
     @Override

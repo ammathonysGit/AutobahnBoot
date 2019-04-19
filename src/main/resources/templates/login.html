@@ -1,100 +1,64 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head lang="en">
-    <title>Login</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="image/icons/favicon.ico"/>
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="font/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="font/iconic/css/material-design-iconic-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../css/util.css">
-    <link rel="stylesheet" type="text/css" href="../css/main.css">
-    <!--===============================================================================================-->
+
+    <link rel="stylesheet" th:href="@{./css/loginsignup.css}" type="text/css">
+
+    <title>Login/Sign up</title>
 </head>
 <body>
 
-<div class="limiter">
-    <div class="container-login100">
-        <div class="wrap-login100">
-            <form class="login100-form validate-form">
-					<span class="login100-form-title p-b-26">
-						Welcome
-					</span>
-                <span class="login100-form-title p-b-48">
-						<i class="zmdi zmdi-font"></i>
-					</span>
-
-                <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                    <input class="input100" type="text" name="email">
-                    <span class="focus-input100" data-placeholder="Email"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input" data-validate="Enter password">
-						<span class="btn-show-pass">
-							<i class="zmdi zmdi-eye"></i>
-						</span>
-                    <input class="input100" type="password" name="pass">
-                    <span class="focus-input100" data-placeholder="Password"></span>
-                </div>
-
-                <div class="container-login100-form-btn">
-                    <div class="wrap-login100-form-btn">
-                        <div class="login100-form-bgbtn"></div>
-                        <button class="login100-form-btn">
-                            Login
-                        </button>
+<section class="forms-section">
+    <h1 class="section-title">Autobahn</h1>
+    <div class="forms">
+        <div class="form-wrapper is-active">
+            <button type="button" class="switcher switcher-login">
+                Login
+                <span class="underline"></span>
+            </button>
+            <form class="form form-login" th:acton="@{'/login'}" th:method="post">
+                <fieldset>
+                    <legend>Please, enter your username and password for login.</legend>
+                    <div class="input-block">
+                        <label for="login-email">Username</label>
+                        <input id="login-email" type="text" name="username" required>
                     </div>
-                </div>
-
-                <div class="text-center p-t-115">
-						<span class="txt1">
-							Don’t have an account?
-						</span>
-
-                    <a class="txt2" href="#">
-                        Sign Up
-                    </a>
-                </div>
+                    <div class="input-block">
+                        <label for="login-password">Password</label>
+                        <input id="login-password" type="password" required name="password">
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+        </div>
+        <div class="form-wrapper">
+            <button type="button" class="switcher switcher-signup">
+                Sign Up
+                <span class="underline"></span>
+            </button>
+            <form class="form form-signup">
+                <fieldset>
+                    <legend>Please, enter your username, password and password confirmation for sign up.</legend>
+                    <div class="input-block">
+                        <label for="signup-email">Username</label>
+                        <input id="signup-email" type="text" required>
+                    </div>
+                    <div class="input-block">
+                        <label for="signup-password">Password</label>
+                        <input id="signup-password" type="password" required>
+                    </div>
+                    <div class="input-block">
+                        <label for="signup-password-confirm">Confirm password</label>
+                        <input id="signup-password-confirm" type="password" required>
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn-signup">Continue</button>
             </form>
         </div>
     </div>
-</div>
+</section>
 
-
-<div id="dropDownSelect1"></div>
-
-<!--===============================================================================================-->
-<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/bootstrap/js/popper.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/daterangepicker/moment.min.js"></script>
-<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-<script src="js/main.js"></script>
-
+<script th:src="@{./js/loginsignup.js}"></script>
 </body>
 </html>

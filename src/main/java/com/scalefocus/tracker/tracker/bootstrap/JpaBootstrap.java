@@ -2,8 +2,10 @@ package com.scalefocus.tracker.tracker.bootstrap;
 
 import com.scalefocus.tracker.tracker.entity.Car;
 import com.scalefocus.tracker.tracker.entity.Rim;
+import com.scalefocus.tracker.tracker.entity.User;
 import com.scalefocus.tracker.tracker.services.CarService;
 import com.scalefocus.tracker.tracker.services.RimService;
+import com.scalefocus.tracker.tracker.services.UserService;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -17,11 +19,13 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
     private CarService carService;
     private RimService rimService;
+    private UserService userService;
 
     @Autowired
-    public JpaBootstrap(CarService carService, RimService rimService) {
+    public JpaBootstrap(CarService carService, RimService rimService, UserService userService) {
         this.carService = carService;
         this.rimService = rimService;
+        this.userService = userService;
     }
 
 
@@ -29,6 +33,7 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
     loadCars();
     loadRims();
+    loadUsers();
     }
 
     private void loadCars() {
@@ -260,6 +265,14 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
         rimService.saveRim(rim8);
 
+    }
+
+    private void loadUsers() {
+        User user = new User();
+        user.setUsername("vasil");
+        user.setPassword("1234");
+
+        userService.saveUser(user);
     }
 
 }
