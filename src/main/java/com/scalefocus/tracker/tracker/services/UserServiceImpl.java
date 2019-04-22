@@ -1,14 +1,16 @@
 package com.scalefocus.tracker.tracker.services;
 
 import com.scalefocus.tracker.tracker.entity.User;
-import com.scalefocus.tracker.tracker.exceptions.NoSuchUserFoundException;
 import com.scalefocus.tracker.tracker.exceptions.NoUsersFoundException;
+import com.scalefocus.tracker.tracker.exceptions.UserAlreadyExistsException;
+import com.scalefocus.tracker.tracker.mappers.UserMapper;
+import com.scalefocus.tracker.tracker.model.bindingmodels.AccountBindingModel;
 import com.scalefocus.tracker.tracker.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,6 +20,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public UserServiceImpl(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
+
     }
 
 
@@ -32,8 +35,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUser(User user) {
-        usersRepository.saveAndFlush(user);
+    public void saveUser(AccountBindingModel user) {
+
+       User userToSave = new User();
+       userToSave.setUsername(user.getUsername());
+       userToSave.setPassword(user.getPassword());
+
+       try {
+           userToSave = usersRepository.findByUsername(user.getUsername()).get();
+
+
+       } catch (NoSuchElementException e) {
+           usersRepository.saveAndFlush(userToSave);
+       }
+
     }
 
     @Override

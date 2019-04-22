@@ -1,32 +1,49 @@
 package com.scalefocus.tracker.tracker.controllers;
 
-import com.scalefocus.tracker.tracker.entity.User;
-import com.scalefocus.tracker.tracker.repository.UsersRepository;
+
+import com.scalefocus.tracker.tracker.constants.AccountConstants;
+import com.scalefocus.tracker.tracker.mappers.UserMapper;
+import com.scalefocus.tracker.tracker.model.bindingmodels.AccountBindingModel;
+import com.scalefocus.tracker.tracker.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value = "/users")
 public class UsersController {
 
+    private UserService userService;
+
+
     @Autowired
-    UsersRepository usersRepository;
-
-    @GetMapping(value = "/all")
-    public List<User> getUsers(){
-         return usersRepository.findAll();
+    public UsersController(UserService userService) {
+        this.userService = userService;
     }
 
-    @PostMapping(value = "/save")
-    public List<User> persistUser(@RequestBody User user) {
-        usersRepository.save(user);
-        return usersRepository.findAll();
+
+
+    @RequestMapping(AccountConstants.CREATE_ACCOUNT_FORM_URL)
+    public ModelAndView getRegistrationForm(ModelAndView modelAndView) {
+        modelAndView.setViewName("createAccount");
+        modelAndView.addObject("user", new AccountBindingModel());
+
+        return modelAndView;
     }
 
+
+    @PostMapping("/")
+    public ModelAndView registration(@ModelAttribute AccountBindingModel accountBindingModel, ModelAndView modelAndView) {
+        System.out.println(accountBindingModel.getUsername());
+        System.out.println(accountBindingModel.getPassword());
+        System.out.println(accountBindingModel.getRepeat());
+
+        userService.saveUser(accountBindingModel);
+
+        modelAndView.setViewName("login");
+
+        return modelAndView;
+    }
 }

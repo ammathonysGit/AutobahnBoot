@@ -1,6 +1,7 @@
 package com.scalefocus.tracker.tracker.services;
 
 import com.scalefocus.tracker.tracker.entity.User;
+import com.scalefocus.tracker.tracker.model.bindingmodels.AccountBindingModel;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +14,7 @@ public interface UserService {
 
     public User findUserById(Integer id);
 
-    public void saveUser(User user);
+    public void saveUser(AccountBindingModel user);
 
     public void updateUser(User user);
 

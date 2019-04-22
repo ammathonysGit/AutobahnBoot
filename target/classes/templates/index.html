@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head lang="en">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./css/homepage.css" type="text/css" >
@@ -56,6 +56,8 @@
                     <a class="dropdown-item" th:href="${'/about'}">About the cars we sell</a>
                 </div>
             </li>
+
+            <div sec:authorize="isAnonymous()">
             <li id="signuploginactions" class="navbar-item">
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a th:href="${'/registrationform'}">
@@ -66,6 +68,20 @@
                     </a>
                 </div>
             </li>
+            </div>
+
+            <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
+                <li id="signuploginactionss" class="navbar-item">
+               <a  style="font-size: 18px; color: #cccccc; position: relative; right: 20%">Welcome, <span sec:authentication="name"></span> |
+<!--                Roles: <span sec:authentication="principal.authorities"></span>-->
+               </a>
+                    <form action="#" th:action="@{/logout}" method="post">
+                        <button type="submit" class="btn btn-secondary" style="height: 30px">Logout</button>
+                    </form>
+                </li>
+            </div>
+
+
         </ul>
     </div>
 </nav>

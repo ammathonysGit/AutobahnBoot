@@ -6,7 +6,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2019-04-22T11:54:43+0300",
+    date = "2019-04-22T17:24:44+0300",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 1.8.0_201 (Oracle Corporation)"
 )
 public class UserMapperImpl implements UserMapper {
@@ -19,6 +19,10 @@ public class UserMapperImpl implements UserMapper {
 
         AccountBindingModel accountBindingModel = new AccountBindingModel();
 
+        accountBindingModel.setId( user.getId() );
+        accountBindingModel.setUsername( user.getUsername() );
+        accountBindingModel.setPassword( user.getPassword() );
+
         return accountBindingModel;
     }
 
@@ -29,6 +33,10 @@ public class UserMapperImpl implements UserMapper {
         }
 
         User user = new User();
+
+        user.setId( accountBindingModel.getId() );
+        user.setUsername( accountBindingModel.getUsername() );
+        user.setPassword( accountBindingModel.getPassword() );
 
         return user;
     }

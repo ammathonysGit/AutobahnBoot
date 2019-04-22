@@ -272,7 +272,7 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         user.setUsername("admin");
         user.setPassword("admin");
 
-        userService.saveUser(user);
+//        userService.saveUser(user);
     }
 
 }

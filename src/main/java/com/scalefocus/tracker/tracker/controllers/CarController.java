@@ -77,6 +77,16 @@ public class CarController {
         return modelAndView;
     }
 
+
+    @PostMapping("/cars/car/delete/{id}")
+    public ModelAndView deleteCar(@PathVariable Integer id, ModelAndView modelAndView) {
+        carService.deleteCar(carService.getCarById(id));
+        modelAndView.setViewName("redirect:/cars");
+
+        return modelAndView;
+    }
+
+
     @PostMapping(CarConstants.CAR_SAVED_FORM)
     public ModelAndView getRequiredCarsFromTheSearchForm(@ModelAttribute CarBindingModel carBindingModel, ModelAndView modelAndView) {
         carService.saveCar(carBindingModel);
@@ -84,5 +94,8 @@ public class CarController {
         modelAndView.setViewName("home");
         return modelAndView;
     }
+
+
+
 
 }
