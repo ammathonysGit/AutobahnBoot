@@ -33,7 +33,7 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
     loadCars();
     loadRims();
-    loadUsers();
+//    loadUsers();
     }
 
     private void loadCars() {
@@ -269,8 +269,8 @@ public class JpaBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
     private void loadUsers() {
         User user = new User();
-        user.setUsername("vasil");
-        user.setPassword("1234");
+        user.setUsername("admin");
+        user.setPassword("admin");
 
         userService.saveUser(user);
     }
